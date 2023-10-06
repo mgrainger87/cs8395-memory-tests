@@ -1,0 +1,60 @@
+{
+    "identifier": "max_sum_subarray",
+    "prompts": [
+        {
+            "prompt_id": "24",
+            "prompt": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[-2,1,-3,4,-1,2,1,-5,4]"
+                    },
+                    "expected_output": [
+                        "6"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "max_sum_subarray",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[-2,1,-3,4,-1,2,1,-5,4]"
+            },
+            "expected_output": [
+                "6"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1]"
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[5,4,-1,7,8]"
+            },
+            "expected_output": [
+                "23"
+            ]
+        }
+    ],
+    "optimal_solution": "def max_sum_subarray(nums: list[int]) -> int:\n    if not nums:\n        return 0\n\n    current_sum = max_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n\n    return max_sum"
+}

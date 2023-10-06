@@ -1,0 +1,59 @@
+{
+    "identifier": "valid_anagram",
+    "prompts": [
+        {
+            "prompt_id": "25",
+            "prompt": "Given two strings s and t, return true if t is an anagram of s and false otherwise.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "anagram",
+                        "t": "nagaram"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "valid_anagram",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "t",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "anagram",
+                "t": "nagaram"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "rat",
+                "t": "car"
+            },
+            "expected_output": [
+                "False"
+            ]
+        }
+    ],
+    "optimal_solution": "def valid_anagram(s: str, t: str) -> bool:\n    return sorted(s) == sorted(t)"
+}

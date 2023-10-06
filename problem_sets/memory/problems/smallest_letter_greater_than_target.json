@@ -1,0 +1,68 @@
+{
+    "identifier": "smallest_letter_greater_than_target",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given a list of sorted characters letters containing only lowercase letters, and given a target letter target, find the smallest element in the list that is larger than the given target.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "letters": "['c', 'f', 'j']",
+                        "target": "a"
+                    },
+                    "expected_output": [
+                        "c"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "next_greatest_letter",
+        "parameters": [
+            {
+                "name": "letters",
+                "type": "List[str]"
+            },
+            {
+                "name": "target",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "letters": "['c', 'f', 'j']",
+                "target": "a"
+            },
+            "expected_output": [
+                "c"
+            ]
+        },
+        {
+            "input": {
+                "letters": "['c', 'f', 'j']",
+                "target": "c"
+            },
+            "expected_output": [
+                "f"
+            ]
+        },
+        {
+            "input": {
+                "letters": "['c', 'f', 'j']",
+                "target": "d"
+            },
+            "expected_output": [
+                "f"
+            ]
+        }
+    ],
+    "optimal_solution": "def next_greatest_letter(letters: list[str], target: str) -> str:\n\tfor letter in letters:\n\t\tif letter > target:\n\t\t\treturn letter\n\treturn letters[0]"
+}

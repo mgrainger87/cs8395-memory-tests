@@ -1,0 +1,42 @@
+{
+    "identifier": "longest_substring_k_distinct",
+    "prompts": [
+        {
+            "prompt_id": "10",
+            "prompt": "Given a string `s` and an integer `k`, return the longest substring that contains at most `k` distinct characters.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"s": "eceba", "k": 2},
+                    "expected_output": ["ece"]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "longest_substring_k_distinct",
+        "parameters": [
+            {"name": "s", "type": "str"},
+            {"name": "k", "type": "int"}
+        ],
+        "return_values": [{"type": "str"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"s": "eceba", "k": 2},
+            "expected_output": ["ece"]
+        },
+        {
+            "input": {"s": "aa", "k": 1},
+            "expected_output": ["aa"]
+        },
+        {
+            "input": {"s": "aab", "k": 2},
+            "expected_output": ["aab"]
+        },
+        {
+            "input": {"s": "a", "k": 2},
+            "expected_output": ["a"]
+        }
+    ],
+    "optimal_solution": "def longest_substring_k_distinct(s: str, k: int) -> str:\n    if not s or k == 0:\n        return ''\n    left, right = 0, 0\n    max_length = 0\n    max_substring_start = 0\n    char_frequency = {}\n    while right < len(s):\n        if s[right] not in char_frequency:\n            char_frequency[s[right]] = 0\n        char_frequency[s[right]] += 1\n        while len(char_frequency) > k:\n            char_frequency[s[left]] -= 1\n            if char_frequency[s[left]] == 0:\n                del char_frequency[s[left]]\n            left += 1\n        if right - left + 1 > max_length:\n            max_length = right - left + 1\n            max_substring_start = left\n        right += 1\n    return s[max_substring_start:max_substring_start+max_length]"
+}

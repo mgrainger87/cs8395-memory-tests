@@ -1,0 +1,60 @@
+{
+    "identifier": "three_sum",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0. Notice that the solution set must not contain duplicate triplets.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[-1,0,1,2,-1,-4]"
+                    },
+                    "expected_output": [
+                        "[[-1,-1,2],[-1,0,1]]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "three_sum",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[List[int]]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[-1,0,1,2,-1,-4]"
+            },
+            "expected_output": [
+                "[[-1,-1,2],[-1,0,1]]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[]"
+            },
+            "expected_output": [
+                "[]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[0]"
+            },
+            "expected_output": [
+                "[]"
+            ]
+        }
+    ],
+    "optimal_solution": "def three_sum(nums: List[int]) -> List[List[int]]:\n    nums.sort()\n    res, n = [], len(nums)\n    for i in range(n):\n        if i > 0 and nums[i] == nums[i-1]:\n            continue\n        l, r = i + 1, n - 1\n        while l < r:\n            if nums[i] + nums[l] + nums[r] == 0:\n                res.append([nums[i], nums[l], nums[r]])\n                while l < r and nums[l] == nums[l + 1]:\n                    l += 1\n                while l < r and nums[r] == nums[r - 1]:\n                    r -= 1\n                l += 1\n                r -= 1\n            elif nums[i] + nums[l] + nums[r] < 0:\n                l += 1\n            else:\n                r -= 1\n    return res"
+}

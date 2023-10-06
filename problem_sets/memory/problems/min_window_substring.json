@@ -1,0 +1,68 @@
+{
+    "identifier": "min_window_substring",
+    "prompts": [
+        {
+            "prompt_id": "53",
+            "prompt": "Given two strings s and t, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return an empty string.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "\"ADOBECODEBANC\"",
+                        "t": "\"ABC\""
+                    },
+                    "expected_output": [
+                        "\"BANC\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "min_window",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "t",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "\"ADOBECODEBANC\"",
+                "t": "\"ABC\""
+            },
+            "expected_output": [
+                "\"BANC\""
+            ]
+        },
+        {
+            "input": {
+                "s": "\"A\"",
+                "t": "\"A\""
+            },
+            "expected_output": [
+                "\"A\""
+            ]
+        },
+        {
+            "input": {
+                "s": "\"A\"",
+                "t": "\"AA\""
+            },
+            "expected_output": [
+                "\"\""
+            ]
+        }
+    ],
+    "optimal_solution": "def min_window(s: str, t: str) -> str:\n    from collections import Counter\n\n    if not t or not s:\n        return \"\"\n\n    dict_t = Counter(t)\n    required = len(dict_t)\n    formed = 0\n\n    left, right = 0, 0\n    window_counts = {}\n    ans = float('inf'), None, None\n\n    while right < len(s):\n        char = s[right]\n        window_counts[char] = window_counts.get(char, 0) + 1\n\n        if char in dict_t and window_counts[char] == dict_t[char]:\n            formed += 1\n\n        while left <= right and formed == required:\n            char = s[left]\n\n            if right - left + 1 < ans[0]:\n                ans = (right - left + 1, left, right)\n\n            window_counts[char] -= 1\n            if char in dict_t and window_counts[char] < dict_t[char]:\n                formed -= 1\n\n            left += 1\n\n        right += 1\n\n    return \"\" if ans[0] == float('inf') else s[ans[1]: ans[2] + 1]"
+}

@@ -1,0 +1,52 @@
+{
+    "identifier": "shortest_palindrome",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "Given a string s, you can convert it to a palindrome by adding characters in front of it. Find and return the shortest palindrome you can find by performing this transformation.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "aacecaaa"
+                    },
+                    "expected_output": [
+                        "aaacecaaa"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "shortest_palindrome",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "aacecaaa"
+            },
+            "expected_output": [
+                "aaacecaaa"
+            ]
+        },
+        {
+            "input": {
+                "s": "abcd"
+            },
+            "expected_output": [
+                "dcbabcd"
+            ]
+        }
+    ],
+    "optimal_solution": "def shortest_palindrome(s: str) -> str:\n\tr = s[::-1]\n\tfor i in range(len(s) + 1):\n\t\tif s.startswith(r[i:]):\n\t\t\treturn r[:i] + s"
+}

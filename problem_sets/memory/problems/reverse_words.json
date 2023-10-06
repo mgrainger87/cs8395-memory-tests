@@ -1,0 +1,39 @@
+{
+    "identifier": "reverse_words",
+    "prompts": [
+        {
+            "prompt_id": "2",
+            "prompt": "Given a string, reverse the order of its words.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"s": "Hello World"},
+                    "expected_output": ["World Hello"]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "reverse_words",
+        "parameters": [{"name": "s", "type": "str"}],
+        "return_values": [{"type": "str"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"s": "Hello World"},
+            "expected_output": ["World Hello"]
+        },
+        {
+            "input": {"s": "Python is fun"},
+            "expected_output": ["fun is Python"]
+        },
+        {
+            "input": {"s": ""},
+            "expected_output": [""]
+        },
+        {
+            "input": {"s": "SingleWord"},
+            "expected_output": ["SingleWord"]
+        }
+    ],
+    "optimal_solution": "def reverse_words(s: str) -> str:\n    return ' '.join(reversed(s.split()))"
+}

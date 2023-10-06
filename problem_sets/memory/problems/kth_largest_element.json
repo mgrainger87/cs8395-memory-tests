@@ -1,0 +1,59 @@
+{
+    "identifier": "kth_largest_element",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[3,2,1,5,6,4]",
+                        "k": "2"
+                    },
+                    "expected_output": [
+                        "5"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_kth_largest",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[3,2,1,5,6,4]",
+                "k": "2"
+            },
+            "expected_output": [
+                "5"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,2,3,1,2,4,5,5,6]",
+                "k": "4"
+            },
+            "expected_output": [
+                "4"
+            ]
+        }
+    ],
+    "optimal_solution": "def find_kth_largest(nums: list[int], k: int) -> int:\n    import heapq\n    return heapq.nlargest(k, nums)[-1]"
+}

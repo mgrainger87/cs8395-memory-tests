@@ -1,0 +1,60 @@
+{
+    "identifier": "majority_element_ii",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given an integer array of size n, find all elements that appear more than \u230a n/3 \u230b times.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[3,3,4,2,4,4,2,4,4]"
+                    },
+                    "expected_output": [
+                        "[4]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "majority_element_ii",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[3,3,4,2,4,4,2,4,4]"
+            },
+            "expected_output": [
+                "[4]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,3,4,3,4,4,3,4,4]"
+            },
+            "expected_output": [
+                "[3, 4]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,2,3,4]"
+            },
+            "expected_output": [
+                "[]"
+            ]
+        }
+    ],
+    "optimal_solution": "def majority_element_ii(nums: list[int]) -> list[int]:\n    if not nums:\n        return []\n\n    count1, count2, candidate1, candidate2 = 0, 0, 0, 1\n    for num in nums:\n        if num == candidate1:\n            count1 += 1\n        elif num == candidate2:\n            count2 += 1\n        elif count1 == 0:\n            candidate1, count1 = num, 1\n        elif count2 == 0:\n            candidate2, count2 = num, 1\n        else:\n            count1, count2 = count1 - 1, count2 - 1\n\n    return [num for num in (candidate1, candidate2) if nums.count(num) > len(nums) // 3]"
+}

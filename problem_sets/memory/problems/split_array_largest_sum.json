@@ -1,0 +1,68 @@
+{
+    "identifier": "split_array_largest_sum",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "Given an array nums which consists of non-negative integers and an integer m, you can split the array into m non-empty continuous subarrays. Write a function to minimize the largest sum among these m subarrays.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[7,2,5,10,8]",
+                        "m": "2"
+                    },
+                    "expected_output": [
+                        "18"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "split_array",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "m",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[7,2,5,10,8]",
+                "m": "2"
+            },
+            "expected_output": [
+                "18"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,2,3,4,5]",
+                "m": "2"
+            },
+            "expected_output": [
+                "9"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,4,4]",
+                "m": "3"
+            },
+            "expected_output": [
+                "4"
+            ]
+        }
+    ],
+    "optimal_solution": "def split_array(nums: list[int], m: int) -> int:\n    if not nums:\n        return 0\n\n    low, high = max(nums), sum(nums)\n\n    while low < high:\n        mid = (low + high) // 2\n        pieces, current_sum = 1, 0\n\n        for num in nums:\n            current_sum += num\n            if current_sum > mid:\n                pieces += 1\n                current_sum = num\n\n        if pieces > m:\n            low = mid + 1\n        else:\n            high = mid\n\n    return low"
+}

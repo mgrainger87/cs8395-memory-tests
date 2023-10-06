@@ -1,0 +1,39 @@
+{
+    "identifier": "find_duplicates",
+    "prompts": [
+        {
+            "prompt_id": "1",
+            "prompt": "Given a list of integers, return a list of integers that appear more than once in the list. The returned list should be sorted.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"arr": [4, 3, 2, 7, 8, 2, 3, 1]},
+                    "expected_output": [[2, 3]]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_duplicates",
+        "parameters": [{"name": "arr", "type": "List[int]"}],
+        "return_values": [{"type": "List[int]"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"arr": [4, 3, 2, 7, 8, 2, 3, 1]},
+            "expected_output": [[2, 3]]
+        },
+        {
+            "input": {"arr": [1, 2, 3, 4, 5]},
+            "expected_output": [[]]
+        },
+        {
+            "input": {"arr": []},
+            "expected_output": [[]]
+        },
+        {
+            "input": {"arr": [1, 1, 1, 1]},
+            "expected_output": [[1]]
+        }
+    ],
+    "optimal_solution": "def find_duplicates(arr: list[int]) -> list[int]:\n    from collections import Counter\n    count = Counter(arr)\n    return sorted([num for num, freq in count.items() if freq > 1])"
+}

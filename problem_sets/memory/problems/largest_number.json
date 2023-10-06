@@ -1,0 +1,68 @@
+{
+    "identifier": "largest_number",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "Given a list of non-negative integers nums, arrange them such that they form the largest number.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[10,2]"
+                    },
+                    "expected_output": [
+                        "210"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "largest_number",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[10,2]"
+            },
+            "expected_output": [
+                "210"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,30,34,5,9]"
+            },
+            "expected_output": [
+                "9534330"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1]"
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[10]"
+            },
+            "expected_output": [
+                "10"
+            ]
+        }
+    ],
+    "optimal_solution": "def largest_number(nums: list[int]) -> str:\n    nums = list(map(str, nums))\n    nums.sort(key=lambda x: x * 10, reverse=True)\n    return str(int(''.join(nums)))"
+}

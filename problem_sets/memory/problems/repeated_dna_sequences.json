@@ -1,0 +1,52 @@
+{
+    "identifier": "repeated_dna_sequences",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "All DNA is composed of a series of nucleotides abbreviated as 'A', 'C', 'G', and 'T'. Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+                    },
+                    "expected_output": [
+                        "['AAAAACCCCC', 'CCCCCAAAAA']"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_repeated_dna_sequences",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[str]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+            },
+            "expected_output": [
+                "['AAAAACCCCC', 'CCCCCAAAAA']"
+            ]
+        },
+        {
+            "input": {
+                "s": "AAAAAAAAAAAAA"
+            },
+            "expected_output": [
+                "['AAAAAAAAAA']"
+            ]
+        }
+    ],
+    "optimal_solution": "def find_repeated_dna_sequences(s: str) -> List[str]:\n    count = {}\n    for i in range(len(s) - 9):\n        sub = s[i:i+10]\n        count[sub] = count.get(sub, 0) + 1\n    return [key for key, value in count.items() if value > 1]"
+}

@@ -1,0 +1,50 @@
+{
+    "identifier": "combination_sum_ii",
+    "prompts": [
+        {
+            "prompt_id": "70",
+            "prompt": "Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once in the combination.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "candidates": "[10,1,2,7,6,5]",
+                        "target": "8"
+                    },
+                    "expected_output": [
+                        "\"[[1,2,5],[1,7],[2,6]]\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "combination_sum_ii",
+        "parameters": [
+            {
+                "name": "candidates",
+                "type": "List[int]"
+            },
+            {
+                "name": "target",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[List[int]]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "candidates": "[10,1,2,7,6,5]",
+                "target": "8"
+            },
+            "expected_output": [
+                "\"[[1,2,5],[1,7],[2,6]]\""
+            ]
+        }
+    ],
+    "optimal_solution": "def combination_sum_ii(candidates: List[int], target: int) -> List[List[int]]:\n    def backtrack(start, target, comb, res):\n        if target == 0:\n            res.append(list(comb))\n            return\n        for i in range(start, len(candidates)):\n            if i > start and candidates[i] == candidates[i - 1]:\n                continue\n            if candidates[i] > target:\n                break\n            comb.append(candidates[i])\n            backtrack(i + 1, target - candidates[i], comb, res)\n            comb.pop()\n\n    candidates.sort()\n    res = []\n    backtrack(0, target, [], res)\n    return res"
+}

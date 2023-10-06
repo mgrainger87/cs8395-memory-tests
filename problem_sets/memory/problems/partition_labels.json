@@ -1,0 +1,60 @@
+{
+    "identifier": "partition_labels",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "A string s of lowercase English letters is given. We want to partition this string into as many parts as possible so that each letter appears in at most one part, and return a list of integers representing the size of these parts.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "abacccd"
+                    },
+                    "expected_output": [
+                        "[3, 3, 1]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "partition_labels",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "abacccd"
+            },
+            "expected_output": [
+                "[3, 3, 1]"
+            ]
+        },
+        {
+            "input": {
+                "s": "eccbbbbdec"
+            },
+            "expected_output": [
+                "[10]"
+            ]
+        },
+        {
+            "input": {
+                "s": "a"
+            },
+            "expected_output": [
+                "[1]"
+            ]
+        }
+    ],
+    "optimal_solution": "def partition_labels(s: str) -> list[int]:\n    last = {c: i for i, c in enumerate(s)}\n    j = anchor = 0\n    ans = []\n    for i, c in enumerate(s):\n        j = max(j, last[c])\n        if i == j:\n            ans.append(i - anchor + 1)\n            anchor = i + 1\n    return ans"
+}

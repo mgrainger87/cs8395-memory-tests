@@ -1,0 +1,52 @@
+{
+    "identifier": "reorganize_string",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "Given a string s, rearrange the characters of s so that any two adjacent characters are not the same. Return any possible rearrangement of s or return '' if not possible.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "aab"
+                    },
+                    "expected_output": [
+                        "aba"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "reorganize_string",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "aab"
+            },
+            "expected_output": [
+                "aba"
+            ]
+        },
+        {
+            "input": {
+                "s": "aaab"
+            },
+            "expected_output": [
+                "''"
+            ]
+        }
+    ],
+    "optimal_solution": "def reorganize_string(s: str) -> str:\n    from collections import Counter\n    import heapq\n\n    if not s:\n        return \"\"\n\n    counter = Counter(s)\n    max_freq = max(counter.values())\n    if max_freq > (len(s) + 1) // 2:\n        return \"\"\n\n    heap = [(-freq, char) for char, freq in counter.items()]\n    heapq.heapify(heap)\n\n    res = []\n    while len(heap) >= 2:\n        freq1, char1 = heapq.heappop(heap)\n        freq2, char2 = heapq.heappop(heap)\n        res.extend([char1, char2])\n        if freq1 + 1:\n            heapq.heappush(heap, (freq1 + 1, char1))\n        if freq2 + 1:\n            heapq.heappush(heap, (freq2 + 1, char2))\n\n    if heap:\n        res.append(heapq.heappop(heap)[1])\n\n    return ''.join(res)"
+}

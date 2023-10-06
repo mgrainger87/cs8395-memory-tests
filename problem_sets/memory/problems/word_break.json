@@ -1,0 +1,50 @@
+{
+    "identifier": "word_break",
+    "prompts": [
+        {
+            "prompt_id": "64",
+            "prompt": "Given a non-empty string and a dictionary containing a list of non-empty words, determine if the string can be segmented into space-separated sequences of one or more words present in the dictionary.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "\"leetcode\"",
+                        "word_dict": "['leet','code']"
+                    },
+                    "expected_output": [
+                        "\"True\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "word_break",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "word_dict",
+                "type": "List[str]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "\"leetcode\"",
+                "word_dict": "['leet','code']"
+            },
+            "expected_output": [
+                "\"True\""
+            ]
+        }
+    ],
+    "optimal_solution": "def word_break(s: str, word_dict: List[str]) -> bool:\n    word_set = set(word_dict)\n    dp = [False] * (len(s) + 1)\n    dp[0] = True\n    for i in range(1, len(s) + 1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_set:\n                dp[i] = True\n                break\n    return dp[-1]"
+}

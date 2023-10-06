@@ -1,0 +1,50 @@
+{
+    "identifier": "sum_of_two_values",
+    "prompts": [
+        {
+            "prompt_id": "66",
+            "prompt": "Given a list of integers and a target integer, determine if there exist two distinct values in the list that add up to the target.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[2,7,11,15]",
+                        "target": "9"
+                    },
+                    "expected_output": [
+                        "\"True\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "has_pair_with_sum",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "target",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[2,7,11,15]",
+                "target": "9"
+            },
+            "expected_output": [
+                "\"True\""
+            ]
+        }
+    ],
+    "optimal_solution": "def has_pair_with_sum(nums: List[int], target: int) -> bool:\n    seen = set()\n    for num in nums:\n        complement = target - num\n        if complement in seen:\n            return True\n        seen.add(num)\n    return False"
+}

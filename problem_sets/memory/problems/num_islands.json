@@ -1,0 +1,52 @@
+{
+    "identifier": "num_islands",
+    "prompts": [
+        {
+            "prompt_id": "40",
+            "prompt": "Given a 2D grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "grid": "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "num_islands",
+        "parameters": [
+            {
+                "name": "grid",
+                "type": "List[List[str]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "grid": "[['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "grid": "[['1','1','1'],['0','1','0'],['1','1','1']]"
+            },
+            "expected_output": [
+                "1"
+            ]
+        }
+    ],
+    "optimal_solution": "def num_islands(grid: List[List[str]]) -> int:\n    if not grid:\n        return 0\n    \n    rows, cols = len(grid), len(grid[0])\n    visited = [[0 for _ in range(cols)] for _ in range(rows)]\n    directions = [(0,1), (0,-1), (1,0), (-1,0)]\n    \n    def dfs(i, j):\n        if i < 0 or i >= rows or j < 0 or j >= cols or grid[i][j] == '0' or visited[i][j]:\n            return\n        visited[i][j] = 1\n        for x, y in directions:\n            dfs(i+x, j+y)\n    \n    count = 0\n    for i in range(rows):\n        for j in range(cols):\n            if grid[i][j] == '1' and not visited[i][j]:\n                dfs(i, j)\n                count += 1\n    return count"
+}

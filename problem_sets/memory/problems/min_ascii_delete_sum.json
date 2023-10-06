@@ -1,0 +1,59 @@
+{
+    "identifier": "min_ascii_delete_sum",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "Given two strings s1, s2, find the minimum ASCII sum of deleted characters to make two strings equal.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s1": "sea",
+                        "s2": "eat"
+                    },
+                    "expected_output": [
+                        "231"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "minimumDeleteSum",
+        "parameters": [
+            {
+                "name": "s1",
+                "type": "str"
+            },
+            {
+                "name": "s2",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s1": "sea",
+                "s2": "eat"
+            },
+            "expected_output": [
+                "231"
+            ]
+        },
+        {
+            "input": {
+                "s1": "delete",
+                "s2": "leet"
+            },
+            "expected_output": [
+                "403"
+            ]
+        }
+    ],
+    "optimal_solution": "def minimumDeleteSum(s1: str, s2: str) -> int:\n    m, n = len(s1), len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    \n    # Initialize the bottom row and rightmost column\n    for i in range(m-1, -1, -1):\n        dp[i][n] = dp[i+1][n] + ord(s1[i])\n    for j in range(n-1, -1, -1):\n        dp[m][j] = dp[m][j+1] + ord(s2[j])\n    \n    for i in range(m-1, -1, -1):\n        for j in range(n-1, -1, -1):\n            if s1[i] == s2[j]:\n                dp[i][j] = dp[i+1][j+1]\n            else:\n                dp[i][j] = min(dp[i+1][j] + ord(s1[i]), dp[i][j+1] + ord(s2[j]))\n                \n    return dp[0][0]\n"
+}

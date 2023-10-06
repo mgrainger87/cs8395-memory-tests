@@ -1,0 +1,59 @@
+{
+    "identifier": "min_coins_for_change",
+    "prompts": [
+        {
+            "prompt_id": "57",
+            "prompt": "Given an integer representing a given amount of money and an array of integers representing coin denominations, write a function that returns the minimum number of coins needed to make up that amount. If that amount cannot be made up by any combination of the coins, return -1.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "coins": "[1,2,5]",
+                        "amount": "11"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "coin_change",
+        "parameters": [
+            {
+                "name": "coins",
+                "type": "List[int]"
+            },
+            {
+                "name": "amount",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "coins": "[1,2,5]",
+                "amount": "11"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "coins": "[2]",
+                "amount": "3"
+            },
+            "expected_output": [
+                "-1"
+            ]
+        }
+    ],
+    "optimal_solution": "def coin_change(coins: List[int], amount: int) -> int:\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] = min(dp[x], dp[x - coin] + 1)\n    return dp[amount] if dp[amount] != float('inf') else -1"
+}

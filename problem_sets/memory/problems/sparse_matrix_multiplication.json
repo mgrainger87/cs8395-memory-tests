@@ -1,0 +1,50 @@
+{
+    "identifier": "sparse_matrix_multiplication",
+    "prompts": [
+        {
+            "prompt_id": "58",
+            "prompt": "Given two sparse matrices A and B, return the result of AB. A sparse matrix is a matrix in which the majority of its elements are zero.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "A": "[[1,0,0],[-1,0,3]]",
+                        "B": "[[7,0,0],[0,0,0],[0,0,1]]"
+                    },
+                    "expected_output": [
+                        "[[7,0,0],[-7,0,3]]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "multiply",
+        "parameters": [
+            {
+                "name": "A",
+                "type": "List[List[int]]"
+            },
+            {
+                "name": "B",
+                "type": "List[List[int]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[List[int]]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "A": "[[1,0,0],[-1,0,3]]",
+                "B": "[[7,0,0],[0,0,0],[0,0,1]]"
+            },
+            "expected_output": [
+                "[[7,0,0],[-7,0,3]]"
+            ]
+        }
+    ],
+    "optimal_solution": "def multiply(A: List[List[int]], B: List[List[int]]) -> List[List[int]]:\n    if not A or not B:\n        return []\n\n    m, n, l = len(A), len(A[0]), len(B[0])\n    result = [[0] * l for _ in range(m)]\n\n    for i in range(m):\n        for j in range(n):\n            if A[i][j]:\n                for k in range(l):\n                    result[i][k] += A[i][j] * B[j][k]\n\n    return result"
+}

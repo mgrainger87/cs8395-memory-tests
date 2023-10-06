@@ -1,0 +1,68 @@
+{
+    "identifier": "container_with_most_water",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). Draw n vertical lines, each line is between (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "height": "[1,8,6,2,5,4,8,3,7]"
+                    },
+                    "expected_output": [
+                        "49"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "max_area",
+        "parameters": [
+            {
+                "name": "height",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "height": "[1,8,6,2,5,4,8,3,7]"
+            },
+            "expected_output": [
+                "49"
+            ]
+        },
+        {
+            "input": {
+                "height": "[1,1]"
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "height": "[4,3,2,1,4]"
+            },
+            "expected_output": [
+                "16"
+            ]
+        },
+        {
+            "input": {
+                "height": "[1,2,1]"
+            },
+            "expected_output": [
+                "2"
+            ]
+        }
+    ],
+    "optimal_solution": "def max_area(height: list[int]) -> int:\n    l, r = 0, len(height) - 1\n    max_area = 0\n\n    while l < r:\n        h = min(height[l], height[r])\n        max_area = max(max_area, h * (r - l))\n        if height[l] < height[r]:\n            l += 1\n        else:\n            r -= 1\n\n    return max_area"
+}

@@ -1,0 +1,68 @@
+{
+    "identifier": "min_window_subarray",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "Given an array of integers nums and an integer target, return the minimal length of a continuous subarray of which the sum is greater than or equal to target. If there is no such subarray, return 0 instead.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[2,3,1,2,4,3]",
+                        "target": "7"
+                    },
+                    "expected_output": [
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "min_subarray_len",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "target",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[2,3,1,2,4,3]",
+                "target": "7"
+            },
+            "expected_output": [
+                "2"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,1,1,1,1,1,1,1]",
+                "target": "11"
+            },
+            "expected_output": [
+                "0"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,4,4]",
+                "target": "4"
+            },
+            "expected_output": [
+                "1"
+            ]
+        }
+    ],
+    "optimal_solution": "def min_subarray_len(nums: list[int], target: int) -> int:\n\tn = len(nums)\n\tmin_len = n + 1\n\tleft, right = 0, 0\n\tcurrent_sum = 0\n\n\twhile right < n:\n\t\tcurrent_sum += nums[right]\n\t\twhile current_sum >= target:\n\t\t\tmin_len = min(min_len, right - left + 1)\n\t\t\tcurrent_sum -= nums[left]\n\t\t\tleft += 1\n\t\tright += 1\n\n\treturn min_len if min_len != n + 1 else 0"
+}

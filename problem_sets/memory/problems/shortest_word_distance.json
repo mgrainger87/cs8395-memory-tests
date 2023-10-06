@@ -1,0 +1,66 @@
+{
+    "identifier": "shortest_word_distance",
+    "prompts": [
+        {
+            "prompt_id": "45",
+            "prompt": "Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "words": "['practice', 'makes', 'perfect', 'coding', 'makes']",
+                        "word1": "coding",
+                        "word2": "practice"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "shortest_distance",
+        "parameters": [
+            {
+                "name": "words",
+                "type": "List[str]"
+            },
+            {
+                "name": "word1",
+                "type": "str"
+            },
+            {
+                "name": "word2",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "words": "['practice', 'makes', 'perfect', 'coding', 'makes']",
+                "word1": "coding",
+                "word2": "practice"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "words": "['practice', 'makes', 'perfect', 'coding', 'makes']",
+                "word1": "makes",
+                "word2": "coding"
+            },
+            "expected_output": [
+                "1"
+            ]
+        }
+    ],
+    "optimal_solution": "def shortest_distance(words: List[str], word1: str, word2: str) -> int:\n    idx1, idx2 = -1, -1\n    min_distance = float('inf')\n    \n    for i, word in enumerate(words):\n        if word == word1:\n            idx1 = i\n        elif word == word2:\n            idx2 = i\n        \n        if idx1 != -1 and idx2 != -1:\n            min_distance = min(min_distance, abs(idx1 - idx2))\n    \n    return min_distance"
+}

@@ -1,0 +1,44 @@
+{
+    "identifier": "max_subarray_len_sum_0",
+    "prompts": [
+        {
+            "prompt_id": "65",
+            "prompt": "Given a list of integers, find the maximum length of a subarray that has a sum of 0.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,2,-2,3,1,-2,3,-3]"
+                    },
+                    "expected_output": [
+                        "6"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "max_subarray_len",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,2,-2,3,1,-2,3,-3]"
+            },
+            "expected_output": [
+                "6"
+            ]
+        }
+    ],
+    "optimal_solution": "def max_subarray_len(nums: List[int]) -> int:\n    sum_indices = {0: -1}\n    max_len, s = 0, 0\n    for i, num in enumerate(nums):\n        s += num\n        if s not in sum_indices:\n            sum_indices[s] = i\n        else:\n            max_len = max(max_len, i - sum_indices[s])\n    return max_len"
+}

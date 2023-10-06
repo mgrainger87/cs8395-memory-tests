@@ -1,0 +1,52 @@
+{
+    "identifier": "find_disappeared_numbers",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given an array of integers where 1 \u2264 a[i] \u2264 n (n = size of array), some elements appear twice and others appear once. Find all the elements of [1, n] inclusive that do not appear in this array.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[4,3,2,7,8,2,3,1]"
+                    },
+                    "expected_output": [
+                        "[5,6]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_disappeared_numbers",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[4,3,2,7,8,2,3,1]"
+            },
+            "expected_output": [
+                "[5,6]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,1]"
+            },
+            "expected_output": [
+                "[2]"
+            ]
+        }
+    ],
+    "optimal_solution": "def find_disappeared_numbers(nums: list[int]) -> list[int]:\n\t# Mark the number by changing the sign of the corresponding index\n\tfor num in nums:\n\t\tindex = abs(num) - 1\n\t\tnums[index] = -abs(nums[index])\n\n\t# Collect indices with positive values (these numbers are missing)\n\treturn [i + 1 for i, num in enumerate(nums) if num > 0]"
+}

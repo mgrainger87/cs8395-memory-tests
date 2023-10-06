@@ -1,0 +1,68 @@
+{
+    "identifier": "zigzag_conversion",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "The string 'PAYPALISHIRING' is written in a zigzag pattern on a given number of rows and then read line by line. Write the code that will take a string and make this conversion given a number of rows.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "PAYPALISHIRING",
+                        "numRows": "3"
+                    },
+                    "expected_output": [
+                        "PAHNAPLSIIGYIR"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "convert",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "numRows",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "PAYPALISHIRING",
+                "numRows": "3"
+            },
+            "expected_output": [
+                "PAHNAPLSIIGYIR"
+            ]
+        },
+        {
+            "input": {
+                "s": "PAYPALISHIRING",
+                "numRows": "4"
+            },
+            "expected_output": [
+                "PINALSIGYAHRPI"
+            ]
+        },
+        {
+            "input": {
+                "s": "A",
+                "numRows": "1"
+            },
+            "expected_output": [
+                "A"
+            ]
+        }
+    ],
+    "optimal_solution": "def convert(s: str, numRows: int) -> str:\n    if numRows == 1 or numRows >= len(s):\n        return s\n\n    res = [''] * numRows\n    index, step = 0, 1\n\n    for char in s:\n        res[index] += char\n        if index == 0:\n            step = 1\n        elif index == numRows - 1:\n            step = -1\n        index += step\n\n    return ''.join(res)"
+}

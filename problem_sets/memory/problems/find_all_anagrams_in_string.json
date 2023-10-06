@@ -1,0 +1,59 @@
+{
+    "identifier": "find_all_anagrams_in_string",
+    "prompts": [
+        {
+            "prompt_id": "46",
+            "prompt": "Given a string s and a non-empty string p, find all the start indices of p's anagrams in s. Strings consist of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "cbaebabacd",
+                        "p": "abc"
+                    },
+                    "expected_output": [
+                        "[0, 6]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_anagrams",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "p",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "cbaebabacd",
+                "p": "abc"
+            },
+            "expected_output": [
+                "[0, 6]"
+            ]
+        },
+        {
+            "input": {
+                "s": "abab",
+                "p": "ab"
+            },
+            "expected_output": [
+                "[0, 1, 2]"
+            ]
+        }
+    ],
+    "optimal_solution": "def find_anagrams(s: str, p: str) -> List[int]:\n    from collections import Counter\n    p_count = Counter(p)\n    s_count = Counter(s[:len(p)-1])\n    result = []\n    \n    for i in range(len(p)-1, len(s)):\n        s_count[s[i]] += 1\n        if s_count == p_count:\n            result.append(i - len(p) + 1)\n        s_count[s[i - len(p) + 1]] -= 1\n        if s_count[s[i - len(p) + 1]] == 0:\n            del s_count[s[i - len(p) + 1]]\n    \n    return result"
+}

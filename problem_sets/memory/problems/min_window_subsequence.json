@@ -1,0 +1,50 @@
+{
+    "identifier": "min_window_subsequence",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given strings S and T, find the minimum (contiguous) substring W of S, so that T is a subsequence of W. If there is no such window in S that covers all characters in T, return the empty string. If there are multiple such minimum-length windows, return the one with the left-most starting index.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "S": "abcdebdde",
+                        "T": "bde"
+                    },
+                    "expected_output": [
+                        "bcde"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "min_window",
+        "parameters": [
+            {
+                "name": "S",
+                "type": "str"
+            },
+            {
+                "name": "T",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "S": "abcdebdde",
+                "T": "bde"
+            },
+            "expected_output": [
+                "bcde"
+            ]
+        }
+    ],
+    "optimal_solution": "def min_window(S: str, T: str) -> str:\n    l1, l2 = len(S), len(T)\n    start = 0\n    min_len = float('inf')\n    res = \"\"\n    while start < l1:\n        end = start\n        t_ptr = 0\n        while end < l1 and t_ptr < l2:\n            if S[end] == T[t_ptr]:\n                t_ptr += 1\n            end += 1\n        if t_ptr == l2:\n            s_ptr = l2 - 1\n            end_ptr = end - 1\n            while s_ptr >= 0:\n                if S[end_ptr] == T[s_ptr]:\n                    s_ptr -= 1\n                end_ptr -= 1\n            start = end_ptr + 1\n            if end - start < min_len:\n                min_len = end - start\n                res = S[start:end]\n        start += 1\n    return res\n"
+}

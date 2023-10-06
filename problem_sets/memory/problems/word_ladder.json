@@ -1,0 +1,66 @@
+{
+    "identifier": "word_ladder",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "Given two words (beginWord and endWord), and a dictionary's word list, return the length of shortest transformation sequence from beginWord to endWord, such that only one letter can be changed at a time and each transformed word must exist in the word list.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "beginWord": "hit",
+                        "endWord": "cog",
+                        "wordList": "[\"hot\",\"dot\",\"dog\",\"cog\",\"log\"]"
+                    },
+                    "expected_output": [
+                        "5"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "ladder_length",
+        "parameters": [
+            {
+                "name": "beginWord",
+                "type": "str"
+            },
+            {
+                "name": "endWord",
+                "type": "str"
+            },
+            {
+                "name": "wordList",
+                "type": "List[str]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "beginWord": "hit",
+                "endWord": "cog",
+                "wordList": "[\"hot\",\"dot\",\"dog\",\"cog\",\"log\"]"
+            },
+            "expected_output": [
+                "5"
+            ]
+        },
+        {
+            "input": {
+                "beginWord": "hit",
+                "endWord": "cog",
+                "wordList": "[\"hot\",\"dot\",\"dog\",\"log\"]"
+            },
+            "expected_output": [
+                "0"
+            ]
+        }
+    ],
+    "optimal_solution": "def ladder_length(beginWord: str, endWord: str, wordList: list[str]) -> int:\n    from collections import defaultdict, deque\n    if endWord not in wordList or not endWord or not beginWord or not wordList:\n        return 0\n\n    L = len(beginWord)\n    all_combo_dict = defaultdict(list)\n    for word in wordList:\n        for i in range(L):\n            all_combo_dict[word[:i] + \"*\" + word[i+1:]].append(word)\n\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord: True}\n    while queue:\n        current_word, level = queue.popleft()\n        for i in range(L):\n            intermediate_word = current_word[:i] + \"*\" + current_word[i+1:]\n            for word in all_combo_dict[intermediate_word]:\n                if word == endWord:\n                    return level + 1\n                if word not in visited:\n                    visited[word] = True\n                    queue.append((word, level + 1))\n            all_combo_dict[intermediate_word] = []\n    return 0"
+}

@@ -1,0 +1,60 @@
+{
+    "identifier": "is_palindrome",
+    "prompts": [
+        {
+            "prompt_id": "11",
+            "prompt": "Given a string, determine if it is a palindrome. Ignore spaces and consider only alphanumeric characters.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "A man, a plan, a canal, Panama!"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "is_palindrome",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "A man, a plan, a canal, Panama!"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "racecar"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "hello"
+            },
+            "expected_output": [
+                "False"
+            ]
+        }
+    ],
+    "optimal_solution": "def is_palindrome(s: str) -> bool:\n    s = ''.join(e for e in s if e.isalnum()).lower()\n    return s == s[::-1]"
+}

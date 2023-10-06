@@ -1,0 +1,7 @@
+{
+    "name": "code-coverage",
+    "model": "chatgpt-latest",
+    "run_test": "python3 run_tests.py",
+    "run_score": "python3 score.py",
+    "tags": ["memory", "testing", "python"]
+}

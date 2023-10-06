@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "basic_calculator",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def basic_calculator(s: str) -> int:\n    stack = []\n    num = 0\n    sign = 1\n    operator = '+'\n    \n    for ch in s:\n        if ch.isdigit():\n            num = num * 10 + int(ch)\n        elif ch in ['+', '-', '*', '/']:\n            if operator == '+':\n                stack.append(num)\n            elif operator == '-':\n                stack.append(-num)\n            elif operator == '*':\n                stack[-1] = stack[-1] * num\n            elif operator == '/':\n                stack[-1] = int(stack[-1] / num)\n            \n            num = 0\n            operator = ch\n        elif ch == ' ':\n            continue\n    \n    if operator == '+':\n        stack.append(num)\n    elif operator == '-':\n        stack.append(-num)\n    elif operator == '*':\n        stack[-1] = stack[-1] * num\n    elif operator == '/':\n        stack[-1] = int(stack[-1] / num)\n    \n    return sum(stack)",
+    "feedback": null
+}

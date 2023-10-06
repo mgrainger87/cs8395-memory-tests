@@ -1,0 +1,62 @@
+{
+    "identifier": "merge_two_sorted_arrays",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array. The number of elements initialized in nums1 and nums2 are m and n respectively. You may assume that nums1 has a size equal to m + n such that it has enough space to hold additional elements from nums2.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums1": "[1,2,3,0,0,0]",
+                        "m": "3",
+                        "nums2": "[2,5,6]",
+                        "n": "3"
+                    },
+                    "expected_output": [
+                        "[1,2,2,3,5,6]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "merge",
+        "parameters": [
+            {
+                "name": "nums1",
+                "type": "List[int]"
+            },
+            {
+                "name": "m",
+                "type": "int"
+            },
+            {
+                "name": "nums2",
+                "type": "List[int]"
+            },
+            {
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums1": "[1,2,3,0,0,0]",
+                "m": "3",
+                "nums2": "[2,5,6]",
+                "n": "3"
+            },
+            "expected_output": [
+                "[1,2,2,3,5,6]"
+            ]
+        }
+    ],
+    "optimal_solution": "def merge(nums1: list[int], m: int, nums2: list[int], n: int) -> list[int]:\n    while m > 0 and n > 0:\n        if nums1[m-1] > nums2[n-1]:\n            nums1[m+n-1] = nums1[m-1]\n            m -= 1\n        else:\n            nums1[m+n-1] = nums2[n-1]\n            n -= 1\n    if n > 0:\n        nums1[:n] = nums2[:n]\n    return nums1"
+}

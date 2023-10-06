@@ -1,0 +1,68 @@
+{
+    "identifier": "coin_change_2",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "You are given coins of different denominations and a total amount of money. Write a function to compute the number of combinations that make up that amount.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "coins": "[1,2,5]",
+                        "amount": "5"
+                    },
+                    "expected_output": [
+                        "4"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "coin_combinations",
+        "parameters": [
+            {
+                "name": "coins",
+                "type": "List[int]"
+            },
+            {
+                "name": "amount",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "coins": "[1,2,5]",
+                "amount": "5"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "coins": "[2]",
+                "amount": "3"
+            },
+            "expected_output": [
+                "0"
+            ]
+        },
+        {
+            "input": {
+                "coins": "[10]",
+                "amount": "10"
+            },
+            "expected_output": [
+                "1"
+            ]
+        }
+    ],
+    "optimal_solution": "def coin_combinations(coins: list[int], amount: int) -> int:\n    dp = [0] * (amount + 1)\n    dp[0] = 1\n\n    for coin in coins:\n        for x in range(coin, amount + 1):\n            dp[x] += dp[x - coin]\n\n    return dp[amount]"
+}

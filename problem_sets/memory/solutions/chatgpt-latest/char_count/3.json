@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "char_count",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "3",
+    "solution_code": "def char_count(s: str) -> Dict[str, int]:\n    count = {}\n    for char in s:\n        if char in count:\n            count[char] += 1\n        else:\n            count[char] = 1\n    return count",
+    "feedback": null
+}

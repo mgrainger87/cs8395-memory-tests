@@ -1,0 +1,68 @@
+{
+    "identifier": "fibonacci",
+    "prompts": [
+        {
+            "prompt_id": "12",
+            "prompt": "Given a non-negative integer n, compute the nth Fibonacci number.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "n": "5"
+                    },
+                    "expected_output": [
+                        "5"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "fibonacci",
+        "parameters": [
+            {
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "n": "5"
+            },
+            "expected_output": [
+                "5"
+            ]
+        },
+        {
+            "input": {
+                "n": "0"
+            },
+            "expected_output": [
+                "0"
+            ]
+        },
+        {
+            "input": {
+                "n": "1"
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "n": "7"
+            },
+            "expected_output": [
+                "13"
+            ]
+        }
+    ],
+    "optimal_solution": "def fibonacci(n: int) -> int:\n    if n <= 1:\n        return n\n    a, b = 0, 1\n    for _ in range(2, n+1):\n        a, b = b, a+b\n    return b"
+}

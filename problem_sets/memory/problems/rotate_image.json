@@ -1,0 +1,44 @@
+{
+    "identifier": "rotate_image",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "You are given an n x n 2D matrix representing an image. Rotate the image by 90 degrees (clockwise). You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "matrix": "[[1,2,3],[4,5,6],[7,8,9]]"
+                    },
+                    "expected_output": [
+                        "[[7,4,1],[8,5,2],[9,6,3]]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "rotate",
+        "parameters": [
+            {
+                "name": "matrix",
+                "type": "List[List[int]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[List[int]]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "matrix": "[[1,2,3],[4,5,6],[7,8,9]]"
+            },
+            "expected_output": [
+                "[[7,4,1],[8,5,2],[9,6,3]]"
+            ]
+        }
+    ],
+    "optimal_solution": "def rotate(matrix: list[list[int]]) -> list[list[int]]:\n    n = len(matrix)\n    for i in range(n):\n        for j in range(i+1, n):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n\n    for row in matrix:\n        row.reverse()\n\n    return matrix"
+}

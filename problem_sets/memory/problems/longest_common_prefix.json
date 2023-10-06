@@ -1,0 +1,52 @@
+{
+    "identifier": "longest_common_prefix",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "strs": "[\"flower\",\"flow\",\"flight\"]"
+                    },
+                    "expected_output": [
+                        "fl"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "longest_common_prefix",
+        "parameters": [
+            {
+                "name": "strs",
+                "type": "List[str]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "strs": "[\"flower\",\"flow\",\"flight\"]"
+            },
+            "expected_output": [
+                "fl"
+            ]
+        },
+        {
+            "input": {
+                "strs": "[\"dog\",\"racecar\",\"car\"]"
+            },
+            "expected_output": [
+                ""
+            ]
+        }
+    ],
+    "optimal_solution": "def longest_common_prefix(strs: list[str]) -> str:\n    if not strs:\n        return \"\"\n\n    prefix = strs[0]\n    for string in strs[1:]:\n        i = 0\n        while i < len(prefix) and i < len(string) and prefix[i] == string[i]:\n            i += 1\n        prefix = prefix[:i]\n\n    return prefix"
+}

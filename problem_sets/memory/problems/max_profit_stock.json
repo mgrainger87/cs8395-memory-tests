@@ -1,0 +1,52 @@
+{
+    "identifier": "max_profit_stock",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "You are given an array prices where prices[i] is the price of a given stock on the i-th day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "prices": "[7,1,5,3,6,4]"
+                    },
+                    "expected_output": [
+                        "5"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "max_profit",
+        "parameters": [
+            {
+                "name": "prices",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "prices": "[7,1,5,3,6,4]"
+            },
+            "expected_output": [
+                "5"
+            ]
+        },
+        {
+            "input": {
+                "prices": "[7,6,4,3,1]"
+            },
+            "expected_output": [
+                "0"
+            ]
+        }
+    ],
+    "optimal_solution": "def max_profit(prices: list[int]) -> int:\n    min_price = float('inf')\n    max_profit_val = 0\n\n    for price in prices:\n        if price < min_price:\n            min_price = price\n        else:\n            max_profit_val = max(max_profit_val, price - min_price)\n\n    return max_profit_val"
+}

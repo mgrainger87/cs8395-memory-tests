@@ -1,0 +1,60 @@
+{
+    "identifier": "longest_string_chain",
+    "prompts": [
+        {
+            "prompt_id": "33",
+            "prompt": "Given a list of words, each word consists of English lowercase letters. Let's say word1 is a predecessor of word2 if and only if we can add exactly one letter anywhere in word1 to make word2. Return the longest possible length of a word chain with words chosen from the given list of words.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "words": "[\"a\",\"b\",\"ba\",\"bca\",\"bda\",\"bdca\"]"
+                    },
+                    "expected_output": [
+                        "4"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "longest_str_chain",
+        "parameters": [
+            {
+                "name": "words",
+                "type": "List[str]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "words": "[\"a\",\"b\",\"ba\",\"bca\",\"bda\",\"bdca\"]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "words": "[\"xbc\",\"pcxbcf\",\"xb\",\"cxbc\",\"pcxbc\"]"
+            },
+            "expected_output": [
+                "5"
+            ]
+        },
+        {
+            "input": {
+                "words": "[\"abcd\",\"bcdf\",\"acef\",\"xyz\",\"az\",\"ba\",\"a\",\"b\"]"
+            },
+            "expected_output": [
+                "2"
+            ]
+        }
+    ],
+    "optimal_solution": "def longest_str_chain(words: list[str]) -> int:\n    words.sort(key=len)\n    dp = {}\n    max_len = 0\n    for word in words:\n        dp[word] = 1\n        for i in range(len(word)):\n            prev = word[:i] + word[i+1:]\n            if prev in dp:\n                dp[word] = max(dp[word], dp[prev] + 1)\n        max_len = max(max_len, dp[word])\n    return max_len"
+}

@@ -1,0 +1,60 @@
+{
+    "identifier": "min_arrows_burst_balloons",
+    "prompts": [
+        {
+            "prompt_id": "30",
+            "prompt": "There are some spherical balloons spread in two-dimensional space. For each balloon, provided input is the start and end coordinates of the horizontal diameter. The start is always smaller than the end. An arrow can be shot up exactly vertically from different points along the x-axis. A balloon with x_start and x_end bursts by an arrow shot at x if x_start \u2264 x \u2264 x_end. There is no limit to the number of arrows that can be shot. An arrow once shot keeps traveling up infinitely. Given an array points where points[i] = [x_start, x_end], return the minimum number of arrows that must be shot to burst all balloons.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "points": "[[10,16],[2,8],[1,6],[7,12]]"
+                    },
+                    "expected_output": [
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "find_min_arrows",
+        "parameters": [
+            {
+                "name": "points",
+                "type": "List[List[int]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "points": "[[10,16],[2,8],[1,6],[7,12]]"
+            },
+            "expected_output": [
+                "2"
+            ]
+        },
+        {
+            "input": {
+                "points": "[[1,2],[3,4],[5,6],[7,8]]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "points": "[[1,2],[2,3],[3,4],[4,5]]"
+            },
+            "expected_output": [
+                "2"
+            ]
+        }
+    ],
+    "optimal_solution": "def find_min_arrows(points: list[list[int]]) -> int:\n    if not points:\n        return 0\n\n    points.sort(key=lambda x: x[1])\n    arrows, end = 1, points[0][1]\n    for start, finish in points[1:]:\n        if start > end:\n            arrows += 1\n            end = finish\n\n    return arrows"
+}

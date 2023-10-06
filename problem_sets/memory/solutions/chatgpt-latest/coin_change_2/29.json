@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "coin_change_2",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "from typing import List\n\ndef coin_combinations(coins: List[int], amount: int) -> int:\n    dp = [0] * (amount + 1)\n    dp[0] = 1\n\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] += dp[i - coin]\n\n    return dp[amount]",
+    "feedback": null
+}

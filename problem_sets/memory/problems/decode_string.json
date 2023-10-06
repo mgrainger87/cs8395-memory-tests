@@ -1,0 +1,68 @@
+{
+    "identifier": "decode_string",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given an encoded string, return its decoded string. The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "3[a]2[bc]"
+                    },
+                    "expected_output": [
+                        "aaabcbc"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "decode_string",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "3[a]2[bc]"
+            },
+            "expected_output": [
+                "aaabcbc"
+            ]
+        },
+        {
+            "input": {
+                "s": "3[a2[c]]"
+            },
+            "expected_output": [
+                "accaccacc"
+            ]
+        },
+        {
+            "input": {
+                "s": "2[abc]3[cd]ef"
+            },
+            "expected_output": [
+                "abcabccdcdcdef"
+            ]
+        },
+        {
+            "input": {
+                "s": "abc3[cd]xyz"
+            },
+            "expected_output": [
+                "abccdcdcdxyz"
+            ]
+        }
+    ],
+    "optimal_solution": "def decode_string(s: str) -> str:\n    stack, curr_num, curr_str = [], 0, ''\n    for c in s:\n        if c == '[':\n            stack.append(curr_str)\n            stack.append(curr_num)\n            curr_str, curr_num = '', 0\n        elif c == ']':\n            num = stack.pop()\n            prev_str = stack.pop()\n            curr_str = prev_str + num * curr_str\n        elif c.isdigit():\n            curr_num = curr_num * 10 + int(c)\n        else:\n            curr_str += c\n    return curr_str"
+}

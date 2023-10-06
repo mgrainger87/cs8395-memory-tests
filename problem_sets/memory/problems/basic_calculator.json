@@ -1,0 +1,60 @@
+{
+    "identifier": "basic_calculator",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "Implement a basic calculator to evaluate a simple expression string which contains non-negative integers, '+', '-', '*', and '/'. The expression string only contains non-negative integers, '+', '-', '*', and '/' operators, and spaces. The integer division should truncate toward zero.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "3+2*2"
+                    },
+                    "expected_output": [
+                        "7"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "basic_calculator",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "3+2*2"
+            },
+            "expected_output": [
+                "7"
+            ]
+        },
+        {
+            "input": {
+                "s": " 3/2 "
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "s": " 3+5 / 2 "
+            },
+            "expected_output": [
+                "5"
+            ]
+        }
+    ],
+    "optimal_solution": "\ndef basic_calculator(s: str) -> int:\n    def shunting_yard_algorithm(token):\n        while operators and operators[-1] in ['*', '/']:\n            values.append(operators.pop())\n        operators.append(token)\n\n    def evaluate_postfix():\n        stack = []\n        for token in values:\n            if isinstance(token, int):\n                stack.append(token)\n            else:\n                b = stack.pop()\n                a = stack.pop()\n                if token == '+':\n                    stack.append(a + b)\n                elif token == '-':\n                    stack.append(a - b)\n                elif token == '*':\n                    stack.append(a * b)\n                elif token == '/':\n                    stack.append(int(a / b))  # Truncate towards zero\n        return stack[0]\n\n    operators, values = [], []\n    i = 0\n    while i < len(s):\n        if s[i] == ' ':\n            i += 1\n            continue\n        if s[i].isdigit():\n            j = i\n            while j < len(s) and s[j].isdigit():\n                j += 1\n            values.append(int(s[i:j]))\n            i = j\n        else:\n            shunting_yard_algorithm(s[i])\n            i += 1\n\n    while operators:\n        values.append(operators.pop())\n\n    return evaluate_postfix()\n"
+}

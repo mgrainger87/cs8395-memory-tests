@@ -1,0 +1,44 @@
+{
+    "identifier": "max_length_pair_chain",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "You are given n pairs of numbers. In every pair, the first number is always smaller than the second number. Now, we define a pair (c, d) can follow another pair (a, b) if and only if b < c. Chain of pairs can be formed in this fashion. Given a set of pairs, find the length longest chain which can be formed.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "pairs": "[[1,2], [2,3], [3,4]]"
+                    },
+                    "expected_output": [
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "findLongestChain",
+        "parameters": [
+            {
+                "name": "pairs",
+                "type": "List[List[int]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "pairs": "[[1,2], [2,3], [3,4]]"
+            },
+            "expected_output": [
+                "2"
+            ]
+        }
+    ],
+    "optimal_solution": "def findLongestChain(pairs: list[list[int]]) -> int:\n    pairs.sort(key=lambda x: x[1])\n    cur, ans = float('-inf'), 0\n    for pair in pairs:\n        if cur < pair[0]:\n            cur = pair[1]\n            ans += 1\n    return ans"
+}

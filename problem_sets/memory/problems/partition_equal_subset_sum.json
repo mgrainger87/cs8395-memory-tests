@@ -1,0 +1,52 @@
+{
+    "identifier": "partition_equal_subset_sum",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,5,11,5]"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "can_partition",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,5,11,5]"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,2,3,5]"
+            },
+            "expected_output": [
+                "False"
+            ]
+        }
+    ],
+    "optimal_solution": "def can_partition(nums: list[int]) -> bool:\n    total = sum(nums)\n    if total % 2 != 0:\n        return False\n\n    target = total // 2\n    dp = [False] * (target + 1)\n    dp[0] = True\n\n    for num in nums:\n        for i in range(target, num-1, -1):\n            dp[i] = dp[i] or dp[i-num]\n\n    return dp[target]"
+}

@@ -1,0 +1,68 @@
+{
+    "identifier": "max_sum_circular_subarray",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "Given a circular integer array nums of length n, return the maximum possible sum of a non-empty subarray of nums. A circular array means the end of the array connects to the beginning of the array.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,-2,3,-2]"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "max_subarray_sum_circular",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,-2,3,-2]"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[5,-3,5]"
+            },
+            "expected_output": [
+                "10"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,-1,2,-1]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,-2,2,-3]"
+            },
+            "expected_output": [
+                "3"
+            ]
+        }
+    ],
+    "optimal_solution": "def max_subarray_sum_circular(nums: list[int]) -> int:\n    total, max_sum, cur_max, min_sum, cur_min = nums[0], nums[0], nums[0], nums[0], nums[0]\n    for num in nums[1:]:\n        cur_max = max(num, cur_max + num)\n        max_sum = max(max_sum, cur_max)\n        cur_min = min(num, cur_min + num)\n        min_sum = min(min_sum, cur_min)\n        total += num\n    return max(max_sum, total - min_sum) if max_sum > 0 else max_sum"
+}

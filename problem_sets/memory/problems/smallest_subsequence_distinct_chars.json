@@ -1,0 +1,60 @@
+{
+    "identifier": "smallest_subsequence_distinct_chars",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Return the lexicographically smallest subsequence of 's' that contains all the distinct characters of 's' exactly once.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "cdadabcc"
+                    },
+                    "expected_output": [
+                        "adbc"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "smallest_subsequence",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "cdadabcc"
+            },
+            "expected_output": [
+                "adbc"
+            ]
+        },
+        {
+            "input": {
+                "s": "abcd"
+            },
+            "expected_output": [
+                "abcd"
+            ]
+        },
+        {
+            "input": {
+                "s": "ecbacba"
+            },
+            "expected_output": [
+                "eacb"
+            ]
+        }
+    ],
+    "optimal_solution": "def smallest_subsequence(s: str) -> str:\n\tstack, seen, last_occurrence = [], set(), {}\n\tfor i, char in enumerate(s):\n\t\tlast_occurrence[char] = i\n\n\tfor i, char in enumerate(s):\n\t\tif char not in seen:\n\t\t\twhile stack and stack[-1] > char and i < last_occurrence[stack[-1]]:\n\t\t\t\tseen.discard(stack.pop())\n\t\t\tseen.add(char)\n\t\t\tstack.append(char)\n\treturn ''.join(stack)"
+}

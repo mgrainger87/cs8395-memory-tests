@@ -1,0 +1,59 @@
+{
+    "identifier": "max_len_repeated_subarray",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "A": "[1,2,3,2,1]",
+                        "B": "[3,2,1,4,7]"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "findLength",
+        "parameters": [
+            {
+                "name": "A",
+                "type": "List[int]"
+            },
+            {
+                "name": "B",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "A": "[1,2,3,2,1]",
+                "B": "[3,2,1,4,7]"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "A": "[0,0,0,0,0]",
+                "B": "[0,0,0,0,0]"
+            },
+            "expected_output": [
+                "5"
+            ]
+        }
+    ],
+    "optimal_solution": "def findLength(A: list[int], B: list[int]) -> int:\n    m, n = len(A), len(B)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(m-1, -1, -1):\n        for j in range(n-1, -1, -1):\n            if A[i] == B[j]:\n                dp[i][j] = dp[i+1][j+1] + 1\n    return max(max(row) for row in dp)"
+}

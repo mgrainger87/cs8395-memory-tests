@@ -1,0 +1,76 @@
+{
+    "identifier": "contains_nearby_almost_duplicate",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "Given an integer array nums and two integers k and t, return true if there are two distinct indices i and j in the array such that abs(nums[i] - nums[j]) <= t and abs(i - j) <= k.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,2,3,1]",
+                        "k": "3",
+                        "t": "0"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "contains_nearby_almost_duplicate",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "k",
+                "type": "int"
+            },
+            {
+                "name": "t",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,2,3,1]",
+                "k": "3",
+                "t": "0"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,0,1,1]",
+                "k": "1",
+                "t": "2"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,5,9,1,5,9]",
+                "k": "2",
+                "t": "3"
+            },
+            "expected_output": [
+                "False"
+            ]
+        }
+    ],
+    "optimal_solution": "def contains_nearby_almost_duplicate(nums: list[int], k: int, t: int) -> bool:\n    if t < 0: return False\n    bucket = {}\n    w = t + 1\n    for i, v in enumerate(nums):\n        m = v // w\n        if m in bucket:\n            return True\n        if m - 1 in bucket and abs(bucket[m-1] - v) < w:\n            return True\n        if m + 1 in bucket and abs(bucket[m+1] - v) < w:\n            return True\n        bucket[m] = v\n        if i >= k:\n            del bucket[nums[i-k] // w]\n    return False"
+}

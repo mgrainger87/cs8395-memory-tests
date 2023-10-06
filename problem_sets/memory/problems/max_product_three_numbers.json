@@ -1,0 +1,60 @@
+{
+    "identifier": "max_product_three_numbers",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given an integer array nums, find three numbers whose product is maximum and return the maximum product.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,2,3]"
+                    },
+                    "expected_output": [
+                        "6"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "maximum_product",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,2,3]"
+            },
+            "expected_output": [
+                "6"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,2,3,4]"
+            },
+            "expected_output": [
+                "24"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[-1,-2,-3]"
+            },
+            "expected_output": [
+                "-6"
+            ]
+        }
+    ],
+    "optimal_solution": "def maximum_product(nums: list[int]) -> int:\n    nums.sort()\n    return max(nums[-1] * nums[-2] * nums[-3], nums[0] * nums[1] * nums[-1])"
+}

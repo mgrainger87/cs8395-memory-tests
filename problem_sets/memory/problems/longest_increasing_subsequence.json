@@ -1,0 +1,60 @@
+{
+    "identifier": "longest_increasing_subsequence",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given an integer array nums, return the length of the longest strictly increasing subsequence.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[10,9,2,5,3,7,101,18]"
+                    },
+                    "expected_output": [
+                        "4"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "length_of_lis",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[10,9,2,5,3,7,101,18]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[0,1,0,3,2,3]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[7,7,7,7,7,7,7]"
+            },
+            "expected_output": [
+                "1"
+            ]
+        }
+    ],
+    "optimal_solution": "def length_of_lis(nums: list[int]) -> int:\n    if not nums:\n        return 0\n\n    dp = [1] * len(nums)\n    for i in range(len(nums)):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    return max(dp)"
+}

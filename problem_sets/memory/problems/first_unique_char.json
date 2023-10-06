@@ -1,0 +1,39 @@
+{
+    "identifier": "first_unique_char",
+    "prompts": [
+        {
+            "prompt_id": "7",
+            "prompt": "Given a string, find the first character that appears only once in the string. Return this character or `None` if no such character exists.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"s": "aadadaadr"},
+                    "expected_output": ["r"]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "first_unique_char",
+        "parameters": [{"name": "s", "type": "str"}],
+        "return_values": [{"type": "Optional[str]"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"s": "aadadaadr"},
+            "expected_output": ["r"]
+        },
+        {
+            "input": {"s": "aabbcc"},
+            "expected_output": [null]
+        },
+        {
+            "input": {"s": ""},
+            "expected_output": [null]
+        },
+        {
+            "input": {"s": "abcd"},
+            "expected_output": ["a"]
+        }
+    ],
+    "optimal_solution": "def first_unique_char(s: str) -> str:\n    from collections import Counter\n    count = Counter(s)\n    for char in s:\n        if count[char] == 1:\n            return char\n    return None"
+}

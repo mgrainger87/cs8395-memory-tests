@@ -1,0 +1,76 @@
+{
+    "identifier": "valid_parentheses",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if open brackets are closed by the same type of brackets and they must be closed in the correct order.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "{[]}"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "is_valid",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "()"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "()[]{}"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "(]"
+            },
+            "expected_output": [
+                "False"
+            ]
+        },
+        {
+            "input": {
+                "s": "([)]"
+            },
+            "expected_output": [
+                "False"
+            ]
+        },
+        {
+            "input": {
+                "s": "{[]}"
+            },
+            "expected_output": [
+                "True"
+            ]
+        }
+    ],
+    "optimal_solution": "def is_valid(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\n    for char in s:\n        if char in mapping:\n            top_element = stack.pop() if stack else '#'\n            if mapping[char] != top_element:\n                return False\n        else:\n            stack.append(char)\n    return not stack"
+}

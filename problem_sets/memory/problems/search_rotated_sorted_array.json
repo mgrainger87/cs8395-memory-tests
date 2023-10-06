@@ -1,0 +1,59 @@
+{
+    "identifier": "search_rotated_sorted_array",
+    "prompts": [
+        {
+            "prompt_id": "56",
+            "prompt": "Given a sorted array of integers that is rotated at some pivot unknown to you beforehand, and a target value, return the index of the target value in the array. If the target is not found in the array, return -1. Assume the array does not contain any duplicates.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[4,5,6,7,0,1,2]",
+                        "target": "0"
+                    },
+                    "expected_output": [
+                        "\"4\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "search",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "target",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[4,5,6,7,0,1,2]",
+                "target": "0"
+            },
+            "expected_output": [
+                "\"4\""
+            ]
+        },
+        {
+            "input": {
+                "nums": "[4,5,6,7,0,1,2]",
+                "target": "3"
+            },
+            "expected_output": [
+                "\"-1\""
+            ]
+        }
+    ],
+    "optimal_solution": "def search(nums: List[int], target: int) -> int:\n    if not nums:\n        return -1\n\n    low, high = 0, len(nums) - 1\n\n    while low <= high:\n        mid = (low + high) // 2\n        if target == nums[mid]:\n            return mid\n\n        if nums[low] <= nums[mid]:\n            if nums[low] <= target <= nums[mid]:\n                high = mid - 1\n            else:\n                low = mid + 1\n        else:\n            if nums[mid] <= target <= nums[high]:\n                low = mid + 1\n            else:\n                high = mid - 1\n\n    return -1"
+}

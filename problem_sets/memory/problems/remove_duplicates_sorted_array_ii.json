@@ -1,0 +1,52 @@
+{
+    "identifier": "remove_duplicates_sorted_array_ii",
+    "prompts": [
+        {
+            "prompt_id": "60",
+            "prompt": "Given a sorted array of integers, remove the duplicates in-place such that duplicates appeared at most twice and return the new length.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,1,1,2,2,3]"
+                    },
+                    "expected_output": [
+                        "\"5\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "remove_duplicates",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,1,1,2,2,3]"
+            },
+            "expected_output": [
+                "\"5\""
+            ]
+        },
+        {
+            "input": {
+                "nums": "[0,0,1,1,1,1,2,3,3]"
+            },
+            "expected_output": [
+                "\"7\""
+            ]
+        }
+    ],
+    "optimal_solution": "def remove_duplicates(nums: List[int]) -> int:\n    if len(nums) <= 2:\n        return len(nums)\n    \n    index = 2\n    for i in range(2, len(nums)):\n        if nums[i] != nums[index-2]:\n            nums[index] = nums[i]\n            index += 1\n    return index"
+}

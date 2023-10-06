@@ -1,0 +1,60 @@
+{
+    "identifier": "house_robber_ii",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and it will automatically contact the police if two adjacent houses were broken into on the same night. Given a list of non-negative integers nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[2,3,2]"
+                    },
+                    "expected_output": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "rob",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[2,3,2]"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[1,2,3,1]"
+            },
+            "expected_output": [
+                "4"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[0]"
+            },
+            "expected_output": [
+                "0"
+            ]
+        }
+    ],
+    "optimal_solution": "def rob(nums: list[int]) -> int:\n    def simple_rob(nums: list[int]) -> int:\n        prev, curr = 0, 0\n        for num in nums:\n            prev, curr = curr, max(prev + num, curr)\n        return curr\n\n    if len(nums) <= 3:\n        return max(nums)\n    return max(simple_rob(nums[:-1]), simple_rob(nums[1:]))"
+}

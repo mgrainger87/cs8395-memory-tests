@@ -1,0 +1,39 @@
+{
+    "identifier": "char_count",
+    "prompts": [
+        {
+            "prompt_id": "3",
+            "prompt": "Given a string, return a dictionary where the keys are characters and the values are the number of times each character appears in the string.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"s": "aabbcc"},
+                    "expected_output": ["{'a': 2, 'b': 2, 'c': 2}"]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "char_count",
+        "parameters": [{"name": "s", "type": "str"}],
+        "return_values": [{"type": "Dict[str, int]"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"s": "aabbcc"},
+            "expected_output": ["{'a': 2, 'b': 2, 'c': 2}"]
+        },
+        {
+            "input": {"s": ""},
+            "expected_output": [{}]
+        },
+        {
+            "input": {"s": "abc"},
+            "expected_output": ["{'a': 1, 'b': 1, 'c': 1}"]
+        },
+        {
+            "input": {"s": "Aa"},
+            "expected_output": ["{'A': 1, 'a': 1}"]
+        }
+    ],
+    "optimal_solution": "def char_count(s: str) -> dict[str, int]:\n    from collections import Counter\n    return Counter(s)"
+}

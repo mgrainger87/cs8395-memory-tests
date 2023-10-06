@@ -1,0 +1,59 @@
+{
+    "identifier": "rotate_array",
+    "prompts": [
+        {
+            "prompt_id": "21",
+            "prompt": "Given an array, return an array rotated to the right by k steps, where k is non-negative.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[1,2,3,4,5,6,7]",
+                        "k": "3"
+                    },
+                    "expected_output": [
+                        "[5,6,7,1,2,3,4]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "rotate_array",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            },
+            {
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[1,2,3,4,5,6,7]",
+                "k": "3"
+            },
+            "expected_output": [
+                "[5,6,7,1,2,3,4]"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[-1,-100,3,99]",
+                "k": "2"
+            },
+            "expected_output": [
+                "[3,99,-1,-100]"
+            ]
+        }
+    ],
+    "optimal_solution": "def rotate_array(nums: List[int], k: int) -> List[int]:\n    k = k % len(nums)\n    return nums[-k:] + nums[:-k]\n"
+}

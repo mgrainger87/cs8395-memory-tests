@@ -1,0 +1,76 @@
+{
+    "identifier": "max_score_removing_stones",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "You are playing a solitaire game with three piles of stones of sizes a, b, and c respectively. Each turn you choose two different non-empty piles, take one stone from each, and add 1 point to your score. The game stops when there are fewer than two non-empty piles. Given three integers a, b, and c, return the maximum score you can get.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "a": "2",
+                        "b": "4",
+                        "c": "6"
+                    },
+                    "expected_output": [
+                        "6"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "maximum_score",
+        "parameters": [
+            {
+                "name": "a",
+                "type": "int"
+            },
+            {
+                "name": "b",
+                "type": "int"
+            },
+            {
+                "name": "c",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "a": "2",
+                "b": "4",
+                "c": "6"
+            },
+            "expected_output": [
+                "6"
+            ]
+        },
+        {
+            "input": {
+                "a": "4",
+                "b": "4",
+                "c": "6"
+            },
+            "expected_output": [
+                "7"
+            ]
+        },
+        {
+            "input": {
+                "a": "1",
+                "b": "8",
+                "c": "8"
+            },
+            "expected_output": [
+                "8"
+            ]
+        }
+    ],
+    "optimal_solution": "def maximum_score(a: int, b: int, c: int) -> int:\n    arr = [a, b, c]\n    arr.sort()\n    if arr[0] + arr[1] <= arr[2]:\n        return arr[0] + arr[1]\n    return (a + b + c) // 2"
+}

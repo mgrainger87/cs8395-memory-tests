@@ -1,0 +1,59 @@
+{
+    "identifier": "course_schedule",
+    "prompts": [
+        {
+            "prompt_id": "34",
+            "prompt": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai. Return true if you can finish all courses. Otherwise, return false.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "numCourses": "2",
+                        "prerequisites": "[[1,0]]"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "can_finish",
+        "parameters": [
+            {
+                "name": "numCourses",
+                "type": "int"
+            },
+            {
+                "name": "prerequisites",
+                "type": "List[List[int]]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "numCourses": "2",
+                "prerequisites": "[[1,0]]"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "numCourses": "2",
+                "prerequisites": "[[1,0],[0,1]]"
+            },
+            "expected_output": [
+                "False"
+            ]
+        }
+    ],
+    "optimal_solution":  "def can_finish(numCourses: int, prerequisites: List[List[int]]) -> bool:\n    graph = [[] for _ in range(numCourses)]\n    visit = [0 for _ in range(numCourses)]\n    for x, y in prerequisites:\n        graph[x].append(y)\n\n    def dfs(i):\n        if visit[i] == -1:  # Node is currently being visited, indicates a cycle\n            return False\n        if visit[i] == 1:  # Node has been visited and is safe\n            return True\n        visit[i] = -1  # Mark node as currently being visited\n        for j in graph[i]:\n            if not dfs(j):  # If any descendant node has a cycle, this node is also not safe\n                return False\n        visit[i] = 1  # Mark node as safe\n        return True\n\n    for i in range(numCourses):\n        if not dfs(i):  # If any node is not safe, return False\n            return False\n    return True"
+}

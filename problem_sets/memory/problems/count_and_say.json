@@ -1,0 +1,52 @@
+{
+    "identifier": "count_and_say",
+    "prompts": [
+        {
+            "prompt_id": "23",
+            "prompt": "The count-and-say sequence is a sequence of digit strings defined by the recursive formula: countAndSay(1) = '1', countAndSay(n) is the way you would 'say' the digit string from countAndSay(n-1), which is then converted into a different digit string.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "n": "4"
+                    },
+                    "expected_output": [
+                        "1211"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "count_and_say",
+        "parameters": [
+            {
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "n": "1"
+            },
+            "expected_output": [
+                "1"
+            ]
+        },
+        {
+            "input": {
+                "n": "4"
+            },
+            "expected_output": [
+                "1211"
+            ]
+        }
+    ],
+    "optimal_solution": "def count_and_say(n: int) -> str:\n    if n == 1:\n        return '1'\n    prev = count_and_say(n-1)\n    result = []\n    count = 1\n    for i in range(1, len(prev)):\n        if prev[i] == prev[i-1]:\n            count += 1\n        else:\n            result.append(str(count))\n            result.append(prev[i-1])\n            count = 1\n    result.append(str(count))\n    result.append(prev[-1])\n    return ''.join(result)"
+}

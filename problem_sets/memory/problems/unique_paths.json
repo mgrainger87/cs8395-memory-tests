@@ -1,0 +1,77 @@
+{
+    "identifier": "unique_paths",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "A robot is located at the top-left corner of a m x n grid. The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid. How many possible unique paths are there?",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "m": "3",
+                        "n": "7"
+                    },
+                    "expected_output": [
+                        "28"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "unique_paths",
+        "parameters": [
+            {
+                "name": "m",
+                "type": "int"
+            },
+            {
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "m": "3",
+                "n": "7"
+            },
+            "expected_output": [
+                "28"
+            ]
+        },
+        {
+            "input": {
+                "m": "3",
+                "n": "2"
+            },
+            "expected_output": [
+                "3"
+            ]
+        },
+        {
+            "input": {
+                "m": "7",
+                "n": "3"
+            },
+            "expected_output": [
+                "28"
+            ]
+        },
+        {
+            "input": {
+                "m": "3",
+                "n": "3"
+            },
+            "expected_output": [
+                "6"
+            ]
+        }
+    ],
+    "optimal_solution": "def unique_paths(m: int, n: int) -> int:\n    if m == 1 or n == 1:\n        return 1\n    return unique_paths(m-1, n) + unique_paths(m, n-1)"
+}

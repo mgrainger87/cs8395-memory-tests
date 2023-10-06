@@ -1,0 +1,68 @@
+{
+    "identifier": "valid_parenthesis_string",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given a string containing only three types of characters: '(', ')' and '*', write a function to check whether this string is valid. An asterisk '*' could be treated as a single right parenthesis ')' or a single left parenthesis '(' or an empty string.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "\"()()\""
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "checkValidString",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "\"()()\""
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "\"(*)\""
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "\"(*))\""
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "s": "\"((*)\""
+            },
+            "expected_output": [
+                "True"
+            ]
+        }
+    ],
+    "optimal_solution": "def checkValidString(s: str) -> bool:\n    low, high = 0, 0\n    for char in s:\n        if char == '(':\n            low += 1\n            high += 1\n        elif char == ')':\n            low = max(low - 1, 0)\n            high -= 1\n        else:\n            low = max(low - 1, 0)\n            high += 1\n        if high < 0:\n            return False\n    return low == 0"
+}

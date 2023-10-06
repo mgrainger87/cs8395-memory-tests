@@ -1,0 +1,52 @@
+{
+    "identifier": "trapping_rain_water",
+    "prompts": [
+        {
+            "prompt_id": "28",
+            "prompt": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "height": "[0,1,0,2,1,0,1,3,2,1,2,1]"
+                    },
+                    "expected_output": [
+                        "6"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "trap",
+        "parameters": [
+            {
+                "name": "height",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "height": "[0,1,0,2,1,0,1,3,2,1,2,1]"
+            },
+            "expected_output": [
+                "6"
+            ]
+        },
+        {
+            "input": {
+                "height": "[4,2,0,3,2,5]"
+            },
+            "expected_output": [
+                "9"
+            ]
+        }
+    ],
+    "optimal_solution": "def trap(height: list[int]) -> int:\n    if not height:\n        return 0\n\n    left_max, right_max = 0, 0\n    left, right = 0, len(height) - 1\n    trapped = 0\n\n    while left < right:\n        if height[left] < height[right]:\n            if height[left] >= left_max:\n                left_max = height[left]\n            else:\n                trapped += left_max - height[left]\n            left += 1\n        else:\n            if height[right] >= right_max:\n                right_max = height[right]\n            else:\n                trapped += right_max - height[right]\n            right -= 1\n\n    return trapped"
+}

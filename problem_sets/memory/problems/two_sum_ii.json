@@ -1,0 +1,50 @@
+{
+    "identifier": "two_sum_ii",
+    "prompts": [
+        {
+            "prompt_id": "59",
+            "prompt": "Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number. The function should return the indices of the two numbers (1-indexed). Assume that each input would have exactly one solution.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "numbers": "[2,7,11,15]",
+                        "target": "9"
+                    },
+                    "expected_output": [
+                        "[1,2]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "two_sum",
+        "parameters": [
+            {
+                "name": "numbers",
+                "type": "List[int]"
+            },
+            {
+                "name": "target",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "numbers": "[2,7,11,15]",
+                "target": "9"
+            },
+            "expected_output": [
+                "[1,2]"
+            ]
+        }
+    ],
+    "optimal_solution": "def two_sum(numbers: List[int], target: int) -> List[int]:\n    l, r = 0, len(numbers) - 1\n    while l < r:\n        s = numbers[l] + numbers[r]\n        if s == target:\n            return [l + 1, r + 1]\n        elif s < target:\n            l += 1\n        else:\n            r -= 1\n    return []"
+}

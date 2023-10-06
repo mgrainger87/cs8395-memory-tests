@@ -1,0 +1,50 @@
+{
+    "identifier": "task_scheduler",
+    "prompts": [
+        {
+            "prompt_id": "63",
+            "prompt": "Given a list of tasks to be executed and a positive integer representing a cooling interval 'n', find the least number of units of time required to execute all tasks. The tasks are represented by characters and the same task cannot be executed before 'n' units of time have passed since its last execution.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "tasks": "['A','A','A','B','B','B']",
+                        "n": "2"
+                    },
+                    "expected_output": [
+                        "\"8\""
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "least_interval",
+        "parameters": [
+            {
+                "name": "tasks",
+                "type": "List[chr]"
+            },
+            {
+                "name": "n",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "int"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "tasks": "['A','A','A','B','B','B']",
+                "n": "2"
+            },
+            "expected_output": [
+                "\"8\""
+            ]
+        }
+    ],
+    "optimal_solution": "import collections\nfrom typing import List\n\ndef least_interval(tasks: List[chr], n: int) -> int:\n    task_counts = collections.Counter(tasks).values()\n    M = max(task_counts)\n    Mct = list(task_counts).count(M)\n    return max(len(tasks), (M - 1) * (n + 1) + Mct)\n"
+}

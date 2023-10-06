@@ -1,0 +1,59 @@
+{
+    "identifier": "remove_k_digits",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "Given a non-negative integer num represented as a string, remove k digits from the number so that the new number is the smallest possible.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "num": "1432219",
+                        "k": "3"
+                    },
+                    "expected_output": [
+                        "1219"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "remove_kdigits",
+        "parameters": [
+            {
+                "name": "num",
+                "type": "str"
+            },
+            {
+                "name": "k",
+                "type": "int"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "str"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "num": "1432219",
+                "k": "3"
+            },
+            "expected_output": [
+                "1219"
+            ]
+        },
+        {
+            "input": {
+                "num": "10200",
+                "k": "1"
+            },
+            "expected_output": [
+                "200"
+            ]
+        }
+    ],
+    "optimal_solution": "def remove_kdigits(num: str, k: int) -> str:\n    stack = []\n    for digit in num:\n        while k > 0 and stack and stack[-1] > digit:\n            stack.pop()\n            k -= 1\n        stack.append(digit)\n    while k > 0:\n        stack.pop()\n        k -= 1\n    return ''.join(stack).lstrip('0') or '0'"
+}

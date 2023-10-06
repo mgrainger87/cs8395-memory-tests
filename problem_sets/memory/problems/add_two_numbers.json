@@ -1,0 +1,50 @@
+{
+    "identifier": "add_two_numbers",
+    "prompts": [
+        {
+            "prompt_id": "29",
+            "prompt": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "l1": "[2,4,3]",
+                        "l2": "[5,6,4]"
+                    },
+                    "expected_output": [
+                        "[7,0,8]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "add_two_numbers",
+        "parameters": [
+            {
+                "name": "l1",
+                "type": "List[int]"
+            },
+            {
+                "name": "l2",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "l1": "[2,4,3]",
+                "l2": "[5,6,4]"
+            },
+            "expected_output": [
+                "[7,0,8]"
+            ]
+        }
+    ],
+    "optimal_solution": "def add_two_numbers(l1: list[int], l2: list[int]) -> list[int]:\n    i, j, carry, result = 0, 0, 0, []\n    while i < len(l1) or j < len(l2) or carry:\n        val1 = l1[i] if i < len(l1) else 0\n        val2 = l2[j] if j < len(l2) else 0\n        carry, curr = divmod(val1 + val2 + carry, 10)\n        result.append(curr)\n\n        i, j = i + 1, j + 1\n\n    return result"
+}

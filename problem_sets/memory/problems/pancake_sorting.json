@@ -1,0 +1,52 @@
+{
+    "identifier": "pancake_sorting",
+    "prompts": [
+        {
+            "prompt_id": "31",
+            "prompt": "Given an array of integers arr, sort the array by performing a series of pancake flips. In one pancake flip, choose an integer k (1 <= k <= arr.length) and reverse the sub-array arr[0...k-1]. Return the k-values corresponding to a sequence of pancake flips that sort arr. Any valid answer that sorts the array within 10 * arr.length flips will be judged as correct.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "arr": "[3,2,4,1]"
+                    },
+                    "expected_output": [
+                        "[3,4,2,3,2]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "pancake_sort",
+        "parameters": [
+            {
+                "name": "arr",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "arr": "[3,2,4,1]"
+            },
+            "expected_output": [
+                "[3,4,2,3,2]"
+            ]
+        },
+        {
+            "input": {
+                "arr": "[1,2,3]"
+            },
+            "expected_output": [
+                "[]"
+            ]
+        }
+    ],
+    "optimal_solution": "def pancake_sort(arr: list[int]) -> list[int]:\n\tdef flip(sublist, k):\n\t\ti = 0\n\t\twhile i < k / 2:\n\t\t\tsublist[i], sublist[k-i-1] = sublist[k-i-1], sublist[i]\n\t\t\ti += 1\n\n\tres = []\n\tvalue_to_sort = len(arr)\n\twhile value_to_sort > 0:\n\t\tindex = arr.index(value_to_sort)\n\t\tif index != value_to_sort - 1:\n\t\t\tif index != 0:\n\t\t\t\tres.append(index+1)\n\t\t\t\tflip(arr, index+1)\n\t\t\tres.append(value_to_sort)\n\t\t\tflip(arr, value_to_sort)\n\t\tvalue_to_sort -= 1\n\treturn res"
+}

@@ -1,0 +1,68 @@
+{
+    "identifier": "jump_game",
+    "prompts": [
+        {
+            "prompt_id": "jump_game_1",
+            "prompt": "Given an array of non-negative integers nums, you are initially positioned at the first index of the array. Each element in the array represents your maximum jump length at that position. Determine if you are able to reach the last index.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "nums": "[2,3,1,1,4]"
+                    },
+                    "expected_output": [
+                        "True"
+                    ]
+                },
+                {
+                    "input": {
+                        "nums": "[3,2,1,0,4]"
+                    },
+                    "expected_output": [
+                        "False"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "can_jump",
+        "parameters": [
+            {
+                "name": "nums",
+                "type": "List[int]"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "bool"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "nums": "[2,3,1,1,4]"
+            },
+            "expected_output": [
+                "True"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[3,2,1,0,4]"
+            },
+            "expected_output": [
+                "False"
+            ]
+        },
+        {
+            "input": {
+                "nums": "[0]"
+            },
+            "expected_output": [
+                "True"
+            ]
+        }
+    ],
+    "optimal_solution": "def can_jump(nums):\n    max_reachable = 0\n    for i, n in enumerate(nums):\n        if i > max_reachable:\n            return False\n        max_reachable = max(max_reachable, i + n)\n    return True"
+}

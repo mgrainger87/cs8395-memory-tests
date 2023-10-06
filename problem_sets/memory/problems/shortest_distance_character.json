@@ -1,0 +1,59 @@
+{
+    "identifier": "shortest_distance_character",
+    "prompts": [
+        {
+            "prompt_id": "32",
+            "prompt": "Given a string s and a character c that occurs in s, return an array of integers answer where answer.length == s.length and answer[i] is the shortest distance from s[i] to the character c in s.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {
+                        "s": "loveleetcode",
+                        "c": "e"
+                    },
+                    "expected_output": [
+                        "[3,2,1,0,1,0,0,1,2,2,1,0]"
+                    ]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "shortest_to_char",
+        "parameters": [
+            {
+                "name": "s",
+                "type": "str"
+            },
+            {
+                "name": "c",
+                "type": "str"
+            }
+        ],
+        "return_values": [
+            {
+                "type": "List[int]"
+            }
+        ]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {
+                "s": "loveleetcode",
+                "c": "e"
+            },
+            "expected_output": [
+                "[3,2,1,0,1,0,0,1,2,2,1,0]"
+            ]
+        },
+        {
+            "input": {
+                "s": "aaab",
+                "c": "b"
+            },
+            "expected_output": [
+                "[3,2,1,0]"
+            ]
+        }
+    ],
+    "optimal_solution": "def shortest_to_char(s: str, c: str) -> List[int]:\n    n = len(s)\n    res = [n] * n\n    pos = -n\n    for i in list(range(n)) + list(range(n))[::-1]:\n        if s[i] == c:\n            pos = i\n        res[i] = min(res[i], abs(i - pos))\n    return res\n"
+}

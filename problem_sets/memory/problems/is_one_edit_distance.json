@@ -1,0 +1,42 @@
+{
+    "identifier": "is_one_edit_distance",
+    "prompts": [
+        {
+            "prompt_id": "9",
+            "prompt": "Given two strings, determine if they are one edit (or zero edits) away. An edit can be a character insertion, deletion, or replacement.",
+            "sample_inputs_outputs": [
+                {
+                    "input": {"s1": "bat", "s2": "batman"},
+                    "expected_output": ["False"]
+                }
+            ]
+        }
+    ],
+    "function_prototype": {
+        "function_name": "is_one_edit_distance",
+        "parameters": [
+            {"name": "s1", "type": "str"},
+            {"name": "s2", "type": "str"}
+        ],
+        "return_values": [{"type": "bool"}]
+    },
+    "correctness_test_suite": [
+        {
+            "input": {"s1": "bat", "s2": "batman"},
+            "expected_output": ["False"]
+        },
+        {
+            "input": {"s1": "bat", "s2": "batm"},
+            "expected_output": ["True"]
+        },
+        {
+            "input": {"s1": "bat", "s2": "batz"},
+            "expected_output": ["True"]
+        },
+        {
+            "input": {"s1": "bat", "s2": "bat"},
+            "expected_output": ["False"]
+        }
+    ],
+    "optimal_solution": "def is_one_edit_distance(s1: str, s2: str) -> bool:\n    if abs(len(s1) - len(s2)) > 1:\n        return False\n    for i in range(min(len(s1), len(s2))):\n        if s1[i] != s2[i]:\n            if len(s1) == len(s2):\n                return s1[i+1:] == s2[i+1:]\n            elif len(s1) < len(s2):\n                return s1[i:] == s2[i+1:]\n            else:\n                return s1[i+1:] == s2[i:]\n    return abs(len(s1) - len(s2)) == 1"
+}
