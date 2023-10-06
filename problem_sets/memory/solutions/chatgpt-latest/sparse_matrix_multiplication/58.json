@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "sparse_matrix_multiplication",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "58",
+    "solution_code": "def multiply(A, B):\n    # Get the number of rows and columns in A and B\n    m, n, p = len(A), len(A[0]), len(B[0])\n    \n    # Create the resulting matrix with all elements initialized to 0\n    result = [[0] * p for _ in range(m)]\n    \n    # Iterate through the rows of A\n    for i in range(m):\n        # Iterate through the columns of B\n        for j in range(p):\n            # Iterate through the columns of A and rows of B\n            for k in range(n):\n                # Update the element in the resulting matrix\n                result[i][j] += A[i][k] * B[k][j]\n    \n    return result",
+    "feedback": null
+}

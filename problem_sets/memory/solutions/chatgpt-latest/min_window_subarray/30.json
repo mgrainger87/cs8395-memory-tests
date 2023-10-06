@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "min_window_subarray",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "from typing import List\n\ndef min_subarray_len(nums: List[int], target: int) -> int:\n    n = len(nums)\n    start = 0\n    end = 0\n    curr_sum = 0\n    min_length = float('inf')\n\n    while end < n:\n        curr_sum += nums[end]\n\n        while curr_sum >= target:\n            min_length = min(min_length, end - start + 1)\n            curr_sum -= nums[start]\n            start += 1\n\n        end += 1\n\n    if min_length == float('inf'):\n        return 0\n    else:\n        return min_length",
+    "feedback": null
+}

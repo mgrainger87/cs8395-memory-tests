@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_consecutive_sequence",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def longest_consecutive(nums):\n    # Create a set to store all the numbers in the array\n    num_set = set(nums)\n    \n    longest_streak = 0\n    \n    # Iterate through each number in the array\n    for num in num_set:\n        # Check if the current number is the start of a streak\n        if num - 1 not in num_set:\n            current_num = num\n            current_streak = 1\n            \n            # Keep incrementing the current number and streak length until the streak ends\n            while current_num + 1 in num_set:\n                current_num += 1\n                current_streak += 1\n            \n            # Update the longest streak if the current streak is longer\n            longest_streak = max(longest_streak, current_streak)\n    \n    return longest_streak",
+    "feedback": null
+}

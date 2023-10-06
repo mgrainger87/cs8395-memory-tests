@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "pancake_sorting",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "To solve this problem, we can use the following steps:\n\n1. Initialize an empty list called \"flips\" to store the k-values corresponding to the sequence of pancake flips.\n2. Iterate through the array from right to left.\n3. For each element at index i, find the index of the maximum element in the subarray arr[0...i].\n4. If the index of the maximum element is not equal to i, perform a pancake flip to move the maximum element to the beginning of the subarray.\n5. Add the index (k-value) of the pancake flip to the \"flips\" list.\n6. Perform a pancake flip to move the maximum element to its correct position at index i.\n7. Add the index (k-value) of the pancake flip to the \"flips\" list.\n8. Repeat steps 3-7 until the array is sorted in ascending order.\n9. Return the \"flips\" list.\n\nHere is the solution in Python:\n\ndef pancake_sort(arr):\n    flips = []\n    n = len(arr)\n    for i in range(n-1, 0, -1):\n        max_index = arr.index(max(arr[:i+1]))\n        if max_index != i:\n            arr[:max_index+1] = arr[:max_index+1][::-1]\n            flips.append(max_index+1)\n        arr[:i+1] = arr[:i+1][::-1]\n        flips.append(i+1)\n    return flips",
+    "feedback": null
+}

@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_subarray_len_sum_0",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "65",
+    "solution_code": "def max_subarray_len(nums):\n    if len(nums) == 0:\n        return 0\n\n    max_len = 0\n    cumulative_sum = 0\n    sum_dict = {0: -1}\n\n    for i in range(len(nums)):\n        cumulative_sum += nums[i]\n\n        if cumulative_sum in sum_dict:\n            max_len = max(max_len, i - sum_dict[cumulative_sum])\n        else:\n            sum_dict[cumulative_sum] = i\n\n    return max_len",
+    "feedback": null
+}

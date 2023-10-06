@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_all_anagrams_in_string",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "46",
+    "solution_code": "from collections import defaultdict\nfrom typing import List\n\ndef find_anagrams(s: str, p: str) -> List[int]:\n    result = []\n    pattern_dict = defaultdict(int)\n    window_dict = defaultdict(int)\n    count = 0\n    \n    for char in p:\n        pattern_dict[char] += 1\n    \n    left = right = 0\n    while right < len(s):\n        window_dict[s[right]] += 1\n        if window_dict[s[right]] <= pattern_dict[s[right]]:\n            count += 1\n        \n        if right - left + 1 == len(p):\n            if count == len(p):\n                result.append(left)\n            \n            window_dict[s[left]] -= 1\n            if window_dict[s[left]] < pattern_dict[s[left]]:\n                count -= 1\n            left += 1\n        \n        right += 1\n    \n    return result",
+    "feedback": null
+}

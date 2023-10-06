@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "reverse_words",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "2",
+    "solution_code": "def reverse_words(s: str) -> str:\n    # Split the string into a list of words\n    words = s.split()\n\n    # Reverse the order of the words\n    reversed_words = words[::-1]\n\n    # Join the reversed words into a string\n    reversed_string = ' '.join(reversed_words)\n\n    return reversed_string",
+    "feedback": null
+}

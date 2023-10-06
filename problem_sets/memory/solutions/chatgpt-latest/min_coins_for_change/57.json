@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "min_coins_for_change",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "57",
+    "solution_code": "To solve this problem, we can use dynamic programming. We can create an array dp of size amount + 1 to store the minimum number of coins needed to make up each amount from 0 to the given amount.\n\nInitially, we set all values in dp to infinity, except for the value at index 0 which is set to 0.\n\nThen, for each coin in the coins array, we iterate from the coin value to the amount. For each value, we update dp[i] to be the minimum between dp[i] and dp[i - coin] + 1. This means that we consider using the current coin to make up the current amount, and we update the minimum number of coins needed if necessary.\n\nFinally, if dp[amount] is still infinity, it means that it is not possible to make up the given amount with the given coins. In this case, we return -1. Otherwise, we return dp[amount] which represents the minimum number of coins needed.\n\nHere is the code:\n\ndef coin_change(coins, amount):\n    dp = [float('inf')] * (amount + 1)\n    dp[0] = 0\n\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n\n    return dp[amount] if dp[amount] != float('inf') else -1",
+    "feedback": null
+}

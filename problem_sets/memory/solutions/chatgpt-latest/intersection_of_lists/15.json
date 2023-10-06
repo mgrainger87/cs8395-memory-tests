@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "intersection_of_lists",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "15",
+    "solution_code": "from typing import List\n\ndef intersection_of_lists(list1: List[int], list2: List[int]) -> List[int]:\n    set1 = set(list1)\n    set2 = set(list2)\n    intersection = set1.intersection(set2)\n    return list(intersection)",
+    "feedback": null
+}

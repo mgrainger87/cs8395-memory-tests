@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_repeated_substring",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "To find the length of the longest repeating substring, we can use a sliding window approach.\n\nFirst, we initialize a variable max_length to 0 to keep track of the maximum length of the repeating substring.\n\nNext, we iterate through the string s using a for loop, and for each character, we start a new sliding window.\n\nInside the for loop, we use another for loop to slide the window from the current character to the end of the string. We keep track of the characters in the window using a set. If we encounter a character that is already in the set, it means that we have found a repeating substring. In that case, we update the max_length variable if the length of the current window is greater than max_length.\n\nFinally, we return the value of max_length.\n\nHere is the implementation in Python:\n\ndef longest_repeated_substring_length(s: str) -> int:\n    max_length = 0\n    for i in range(len(s)):\n        window = set()\n        for j in range(i, len(s)):\n            if s[j] in window:\n                max_length = max(max_length, j - i)\n            else:\n                window.add(s[j])\n    return max_length\n\nThis solution has a time complexity of O(n^2) where n is the length of the string s.",
+    "feedback": null
+}

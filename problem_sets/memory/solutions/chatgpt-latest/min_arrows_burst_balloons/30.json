@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "min_arrows_burst_balloons",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "from typing import List\n\ndef find_min_arrows(points: List[List[int]]) -> int:\n    # Sort the balloons based on their end coordinates in ascending order\n    points.sort(key=lambda x: x[1])\n    \n    end = points[0][1]  # Initialize end with the end coordinate of the first balloon\n    arrows = 1  # Initialize arrows with 1\n    \n    # Iterate through the remaining balloons\n    for i in range(1, len(points)):\n        # If the start coordinate of the current balloon is greater than end\n        if points[i][0] > end:\n            arrows += 1  # Increment arrows by 1\n            end = points[i][1]  # Update end with the end coordinate of the current balloon\n        else:\n            end = min(end, points[i][1])  # Update end with the minimum value of end and the end coordinate of the current balloon\n    \n    return arrows  # Return the minimum number of arrows required\n\n# Test case\npoints = [[10,16],[2,8],[1,6],[7,12]]\nprint(find_min_arrows(points))  # Output: 2",
+    "feedback": null
+}

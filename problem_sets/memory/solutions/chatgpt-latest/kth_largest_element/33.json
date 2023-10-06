@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "kth_largest_element",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "def find_kth_largest(nums, k):\n    # Sort the array in descending order\n    nums.sort(reverse=True)\n    \n    # Return the kth largest element\n    return nums[k-1]",
+    "feedback": null
+}

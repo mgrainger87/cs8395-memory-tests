@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_product_three_numbers",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "from typing import List\n\ndef maximum_product(nums: List[int]) -> int:\n    nums.sort()\n    n = len(nums)\n    return max(nums[n-1] * nums[n-2] * nums[n-3], nums[0] * nums[1] * nums[n-1])",
+    "feedback": null
+}

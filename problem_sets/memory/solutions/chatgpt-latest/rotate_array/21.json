@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "rotate_array",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "21",
+    "solution_code": "def rotate_array(nums, k):\n    # Get the length of the array\n    n = len(nums)\n    \n    # Calculate the actual number of rotations needed\n    k = k % n\n    \n    # Reverse the entire array\n    reverse(nums, 0, n-1)\n    \n    # Reverse the first k elements\n    reverse(nums, 0, k-1)\n    \n    # Reverse the remaining n-k elements\n    reverse(nums, k, n-1)\n    \n    return nums\n\ndef reverse(nums, start, end):\n    while start < end:\n        nums[start], nums[end] = nums[end], nums[start]\n        start += 1\n        end -= 1",
+    "feedback": null
+}

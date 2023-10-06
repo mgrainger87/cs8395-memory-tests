@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "is_palindrome",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "11",
+    "solution_code": "import re\n\ndef is_palindrome(s: str) -> bool:\n    # Remove spaces and non-alphanumeric characters from the string\n    s = re.sub(r'[^a-zA-Z0-9]', '', s)\n    \n    # Convert the string to lowercase\n    s = s.lower()\n    \n    # Check if the reversed string is equal to the original string\n    return s == s[::-1]",
+    "feedback": null
+}

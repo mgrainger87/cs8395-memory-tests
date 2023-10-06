@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "task_scheduler",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "63",
+    "solution_code": "The problem can be solved using a greedy algorithm. \n\nFirst, we need to count the number of occurrences of each task. We can create a dictionary to store the count for each task.\n\nNext, we can sort the tasks in descending order based on their counts. This is because we want to execute the tasks with the highest count first.\n\nWe will initialize two variables: \"ans\" to keep track of the total time required and \"cycle\" to keep track of the cooling interval cycles.\n\nWe will iterate through the sorted tasks. For each task, we will check if we can execute it immediately or if we need to wait for the cooling interval to pass. If we can execute it immediately, we will decrement its count and update the \"ans\" variable. If we need to wait, we will increment the \"ans\" variable to account for the idle time.\n\nAfter executing each task, we will decrement the count and check if the task still has remaining count. If it does, we will add it to a queue to be processed later.\n\nFinally, we will return the total time required, which is the sum of \"ans\" and the length of the queue multiplied by the cooling interval.",
+    "feedback": null
+}

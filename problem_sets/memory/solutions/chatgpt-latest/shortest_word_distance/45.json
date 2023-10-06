@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "shortest_word_distance",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "45",
+    "solution_code": "from typing import List\n\ndef shortest_distance(words: List[str], word1: str, word2: str) -> int:\n    idx1 = -1\n    idx2 = -1\n    min_distance = float('inf')\n    \n    for i, word in enumerate(words):\n        if word == word1:\n            idx1 = i\n        if word == word2:\n            idx2 = i\n        \n        if idx1 != -1 and idx2 != -1:\n            min_distance = min(min_distance, abs(idx1 - idx2))\n    \n    return min_distance",
+    "feedback": null
+}

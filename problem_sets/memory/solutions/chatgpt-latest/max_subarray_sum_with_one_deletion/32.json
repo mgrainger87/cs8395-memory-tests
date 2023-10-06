@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_subarray_sum_with_one_deletion",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "def maximumSum(arr):\n    max_sum = float('-inf')  # Initialize the maximum sum as negative infinity\n    deleted_element = None   # Initialize the deleted element as None\n    \n    for i in range(len(arr)):\n        # Calculate the sum of all elements except for the current element\n        current_sum = sum(arr[:i] + arr[i+1:])\n        \n        # Update the maximum sum and deleted element if the current sum is greater\n        if current_sum > max_sum:\n            max_sum = current_sum\n            deleted_element = arr[i]\n    \n    return deleted_element",
+    "feedback": null
+}

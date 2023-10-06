@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "sliding_window_maximum_v2",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "from collections import deque\nfrom typing import List\n\ndef max_sliding_window(nums: List[int], k: int) -> List[int]:\n    result = []\n    window = deque()\n    \n    for i in range(len(nums)):\n        # Remove indices from the front of the deque that are outside of the sliding window range\n        while window and window[0] <= i - k:\n            window.popleft()\n        \n        # Remove indices from the back of the deque that have smaller values than the current element\n        while window and nums[window[-1]] < nums[i]:\n            window.pop()\n        \n        # Add the current index to the back of the deque\n        window.append(i)\n        \n        # If the index at the front of the deque is outside of the sliding window range, add the element at that index to the result list\n        if i >= k - 1:\n            result.append(nums[window[0]])\n    \n    return result",
+    "feedback": null
+}

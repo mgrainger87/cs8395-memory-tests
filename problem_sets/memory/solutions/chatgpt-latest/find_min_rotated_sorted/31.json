@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_min_rotated_sorted",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "from typing import List\n\ndef find_min(nums: List[int]) -> int:\n    left = 0\n    right = len(nums) - 1\n    \n    while left < right:\n        mid = (left + right) // 2\n        \n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    \n    return nums[left]",
+    "feedback": null
+}

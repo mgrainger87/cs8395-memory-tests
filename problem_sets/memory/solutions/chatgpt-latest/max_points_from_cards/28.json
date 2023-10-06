@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_points_from_cards",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def max_score(cardPoints, k):\n    n = len(cardPoints)\n    # Calculate the sum of the first k cards from the beginning\n    window_sum = sum(cardPoints[:k])\n    max_sum = window_sum\n    \n    # Iterate through the remaining cards\n    for i in range(k):\n        # Remove one card from the beginning and add one card from the end\n        window_sum = window_sum - cardPoints[k - i - 1] + cardPoints[n - i - 1]\n        # Update the maximum sum\n        max_sum = max(max_sum, window_sum)\n    \n    return max_sum",
+    "feedback": null
+}

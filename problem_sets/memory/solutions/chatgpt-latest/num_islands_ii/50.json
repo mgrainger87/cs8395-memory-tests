@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "num_islands_ii",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "50",
+    "solution_code": "def num_islands_ii(m: int, n: int, positions: List[List[int]]) -> List[int]:\n    def find(x):\n        if parent[x] == -1:\n            return x\n        parent[x] = find(parent[x])\n        return parent[x]\n\n    def union(x, y):\n        x_root = find(x)\n        y_root = find(y)\n        if x_root != y_root:\n            parent[x_root] = y_root\n            return 1\n        return 0\n\n    result = []\n    parent = [-1] * (m * n)\n    count = 0\n\n    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]\n\n    for pos in positions:\n        row, col = pos[0], pos[1]\n        index = row * n + col\n\n        if parent[index] != -1:\n            result.append(count)\n            continue\n\n        parent[index] = index\n        count += 1\n\n        for dx, dy in directions:\n            new_row, new_col = row + dx, col + dy\n            new_index = new_row * n + new_col\n\n            if 0 <= new_row < m and 0 <= new_col < n and parent[new_index] != -1:\n                count -= union(index, new_index)\n\n        result.append(count)\n\n    return result",
+    "feedback": null
+}

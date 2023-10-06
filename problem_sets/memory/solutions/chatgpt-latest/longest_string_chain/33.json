@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_string_chain",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "from typing import List\n\ndef longest_str_chain(words: List[str]) -> int:\n    words.sort(key=lambda x: len(x))\n    dp = {}\n\n    for word in words:\n        dp[word] = 1\n        for i in range(len(word)):\n            predecessor = word[:i] + word[i+1:]\n            if predecessor in dp:\n                dp[word] = max(dp[word], dp[predecessor] + 1)\n\n    return max(dp.values())",
+    "feedback": null
+}

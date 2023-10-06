@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "factorial",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "8",
+    "solution_code": "def factorial(n: int) -> int:\n    result = 1\n    for i in range(1, n+1):\n        result *= i\n    return result",
+    "feedback": null
+}

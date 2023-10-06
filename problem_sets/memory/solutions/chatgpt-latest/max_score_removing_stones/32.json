@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_score_removing_stones",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "def maximum_score(a: int, b: int, c: int) -> int:\n    piles = sorted([a, b, c], reverse=True)  # sort piles in descending order\n    score = 0\n\n    while len(piles) >= 2:  # continue while there are at least two non-empty piles\n        score += 1\n        piles[0] -= 1  # take one stone from the first pile\n        piles[1] -= 1  # take one stone from the second pile\n\n        if piles[0] == 0:\n            piles.pop(0)  # remove the first pile if it becomes empty\n        if piles[1] == 0:\n            piles.pop(1)  # remove the second pile if it becomes empty\n\n    return score",
+    "feedback": null
+}

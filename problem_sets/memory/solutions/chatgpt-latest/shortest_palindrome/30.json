@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "shortest_palindrome",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "def shortest_palindrome(s: str) -> str:\n    n = len(s)\n    for i in range(n-1, -1, -1):\n        if s[:i+1] == s[:i+1][::-1]:\n            return s[i+1:][::-1] + s  # add the reverse of the remaining substring to the beginning\n    return s  # if no palindrome is found, return the original string\n\n# Example usage:\ns = \"aacecaaa\"\nprint(shortest_palindrome(s))  # Output: \"aaacecaaa\"",
+    "feedback": null
+}

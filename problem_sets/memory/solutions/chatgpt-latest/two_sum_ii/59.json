@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "two_sum_ii",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "59",
+    "solution_code": "from typing import List\n\ndef two_sum(numbers: List[int], target: int) -> List[int]:\n    left = 0\n    right = len(numbers) - 1\n    \n    while left < right:\n        curr_sum = numbers[left] + numbers[right]\n        \n        if curr_sum == target:\n            return [left + 1, right + 1]  # indices are 1-indexed in the problem statement\n        elif curr_sum < target:\n            left += 1\n        else:\n            right -= 1\n    \n    return []  # no solution found",
+    "feedback": null
+}

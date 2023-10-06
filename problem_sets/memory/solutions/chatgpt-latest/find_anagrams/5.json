@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_anagrams",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "5",
+    "solution_code": "from collections import Counter\nfrom typing import List\n\ndef find_anagrams(s: str, p: str) -> List[int]:\n    result = []\n    p_count = Counter(p)\n    s_count = Counter(s[:len(p)])\n\n    if p_count == s_count:\n        result.append(0)\n\n    for i in range(len(p), len(s)):\n        if s_count[s[i - len(p)]] == 1:\n            del s_count[s[i - len(p)]]\n        else:\n            s_count[s[i - len(p)]] -= 1\n\n        if s[i] in s_count:\n            s_count[s[i]] += 1\n        else:\n            s_count[s[i]] = 1\n\n        if p_count == s_count:\n            result.append(i - len(p) + 1)\n\n    return result",
+    "feedback": null
+}

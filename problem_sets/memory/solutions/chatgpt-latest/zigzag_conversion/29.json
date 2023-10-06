@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "zigzag_conversion",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def convert(s: str, numRows: int) -> str:\n    # If there is only one row, return the input string as it is\n    if numRows == 1:\n        return s\n    \n    # Create a list of strings to store characters in each row\n    rows = [''] * numRows\n    \n    # Initialize variables for tracking the current row and direction\n    current_row = 0\n    direction = -1\n    \n    # Iterate through the input string character by character\n    for char in s:\n        # Add the character to the current row\n        rows[current_row] += char\n        \n        # If we reach the first or last row, change the direction\n        if current_row == 0 or current_row == numRows - 1:\n            direction *= -1\n        \n        # Move to the next row based on the direction\n        current_row += direction\n    \n    # Join all the rows and return the result\n    return ''.join(rows)",
+    "feedback": null
+}

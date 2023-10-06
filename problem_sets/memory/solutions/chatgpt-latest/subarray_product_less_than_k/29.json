@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "subarray_product_less_than_k",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def num_subarray_product_less_than_k(nums, k):\n    left = 0\n    product = 1\n    count = 0\n    \n    for right in range(len(nums)):\n        product *= nums[right]\n        \n        while product >= k:\n            product /= nums[left]\n            left += 1\n        \n        count += right - left + 1\n    \n    return count",
+    "feedback": null
+}

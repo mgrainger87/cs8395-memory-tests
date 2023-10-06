@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "decode_string",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "def decode_string(s: str) -> str:\n    stack = []\n    current_string = \"\"\n    current_num = 0\n    \n    for char in s:\n        if char.isdigit():\n            current_num = current_num * 10 + int(char)\n        elif char == \"[\":\n            stack.append(current_string)\n            stack.append(current_num)\n            current_string = \"\"\n            current_num = 0\n        elif char == \"]\":\n            num = stack.pop()\n            prev_string = stack.pop()\n            current_string = prev_string + num * current_string\n        else:\n            current_string += char\n    \n    return current_string",
+    "feedback": null
+}

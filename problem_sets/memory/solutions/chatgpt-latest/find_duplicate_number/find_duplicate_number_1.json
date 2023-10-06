@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_duplicate_number",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "find_duplicate_number_1",
+    "solution_code": "from typing import List\n\ndef find_duplicate(nums: List[int]) -> int:\n    slow = nums[0]\n    fast = nums[0]\n\n    # Move slow pointer one step and fast pointer two steps at a time\n    while True:\n        slow = nums[slow]\n        fast = nums[nums[fast]]\n        if slow == fast:\n            break\n\n    # Reset slow pointer to the first element\n    slow = nums[0]\n\n    # Move both pointers one step at a time\n    while slow != fast:\n        slow = nums[slow]\n        fast = nums[fast]\n\n    return slow",
+    "feedback": null
+}

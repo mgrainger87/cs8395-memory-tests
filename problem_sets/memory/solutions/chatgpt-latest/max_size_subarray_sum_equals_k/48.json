@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_size_subarray_sum_equals_k",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "48",
+    "solution_code": "def max_sub_array_len(nums, k):\n    sum_dict = {0: -1}\n    max_len = 0\n    curr_sum = 0\n    \n    for i, num in enumerate(nums):\n        curr_sum += num\n        \n        if curr_sum - k in sum_dict:\n            max_len = max(max_len, i - sum_dict[curr_sum - k])\n        \n        if curr_sum not in sum_dict:\n            sum_dict[curr_sum] = i\n    \n    return max_len",
+    "feedback": null
+}

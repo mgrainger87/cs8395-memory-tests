@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "repeated_dna_sequences",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "from typing import List\n\ndef find_repeated_dna_sequences(s: str) -> List[str]:\n    substring_count = {}\n    result = []\n\n    for i in range(len(s) - 9):  # iterate through the DNA sequence\n        substring = s[i:i+10]  # get a substring of length 10\n\n        if substring in substring_count:\n            substring_count[substring] += 1\n        else:\n            substring_count[substring] = 1\n\n        if substring_count[substring] == 2:\n            result.append(substring)\n\n    return result",
+    "feedback": null
+}

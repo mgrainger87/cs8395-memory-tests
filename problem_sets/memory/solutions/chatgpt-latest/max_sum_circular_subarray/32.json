@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_sum_circular_subarray",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "def max_subarray_sum_circular(nums):\n    # Case 1: maximum subarray does not wrap around\n    max_sum = kadane(nums)\n\n    # Case 2: maximum subarray wraps around\n    total_sum = sum(nums)\n    min_sum = kadane([-num for num in nums])\n    max_sum_wrap = total_sum + min_sum if total_sum + min_sum != 0 else max_sum\n\n    return max(max_sum, max_sum_wrap)\n\ndef kadane(nums):\n    max_sum = float('-inf')\n    curr_sum = 0\n\n    for num in nums:\n        curr_sum = max(num, curr_sum + num)\n        max_sum = max(max_sum, curr_sum)\n\n    return max_sum",
+    "feedback": null
+}

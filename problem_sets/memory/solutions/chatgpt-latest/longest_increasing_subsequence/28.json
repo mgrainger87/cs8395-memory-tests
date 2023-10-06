@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_increasing_subsequence",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "from typing import List\n\ndef length_of_lis(nums: List[int]) -> int:\n    n = len(nums)\n    if n == 0:\n        return 0\n\n    dp = [1] * n\n\n    for i in range(1, n):\n        for j in range(i):\n            if nums[i] > nums[j]:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    return max(dp)",
+    "feedback": null
+}

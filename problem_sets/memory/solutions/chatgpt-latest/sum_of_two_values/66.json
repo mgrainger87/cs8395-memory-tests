@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "sum_of_two_values",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "66",
+    "solution_code": "def has_pair_with_sum(nums: List[int], target: int) -> bool:\n    seen = set()\n    for num in nums:\n        complement = target - num\n        if complement in seen:\n            return True\n        seen.add(num)\n    return False",
+    "feedback": null
+}

@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "jump_game",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "jump_game_1",
+    "solution_code": "To solve this problem, we can use a greedy approach. The idea is to keep track of the maximum index we can reach from the current position. We iterate through the array and update the maximum index as we go along. If at any point the maximum index is less than or equal to the current position, it means we cannot reach the end of the array and we return False. Otherwise, if we reach the end of the array, it means we can jump to the last index and we return True.\n\nHere is the Python code for the solution:\n\ndef can_jump(nums):\n    max_index = 0\n    for i in range(len(nums)):\n        if max_index < i:\n            return False\n        max_index = max(max_index, i + nums[i])\n        if max_index >= len(nums) - 1:\n            return True\n    return False\n\nThis solution has a time complexity of O(n), where n is the length of the input array.",
+    "feedback": null
+}

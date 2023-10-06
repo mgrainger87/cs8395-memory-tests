@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "common_elements",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "13",
+    "solution_code": "def common_elements(list1, list2):\n    # Convert the lists to sets to remove duplicates\n    set1 = set(list1)\n    set2 = set(list2)\n    \n    # Find the common elements by taking the intersection of the two sets\n    common = set1.intersection(set2)\n    \n    # Convert the set back to a list\n    common_list = list(common)\n    \n    return common_list",
+    "feedback": null
+}

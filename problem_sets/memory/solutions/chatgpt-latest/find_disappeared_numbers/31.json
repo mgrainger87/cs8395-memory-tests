@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_disappeared_numbers",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "from typing import List\n\ndef find_disappeared_numbers(nums: List[int]) -> List[int]:\n    result = []\n    \n    # mark the elements as negative\n    for num in nums:\n        index = abs(num) - 1\n        if nums[index] > 0:\n            nums[index] = -nums[index]\n    \n    # find the positive elements (missing numbers)\n    for i in range(len(nums)):\n        if nums[i] > 0:\n            result.append(i+1)\n    \n    return result",
+    "feedback": null
+}

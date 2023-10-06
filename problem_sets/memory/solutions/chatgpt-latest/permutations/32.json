@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "permutations",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "def permutations(nums):\n    result = []\n    backtrack(nums, 0, result)\n    return result\n\ndef backtrack(nums, start, result):\n    # Base case: if all elements have been used, add the current permutation to the result\n    if start == len(nums):\n        result.append(nums[:])\n    \n    # Recursive case: generate permutations by swapping elements\n    for i in range(start, len(nums)):\n        # Swap the current element with the start element\n        nums[start], nums[i] = nums[i], nums[start]\n        \n        # Recursively generate permutations for the remaining elements\n        backtrack(nums, start + 1, result)\n        \n        # Undo the swap to restore the original array\n        nums[start], nums[i] = nums[i], nums[start]",
+    "feedback": null
+}

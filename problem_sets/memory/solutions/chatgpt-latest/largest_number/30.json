@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "largest_number",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "from typing import List\n\ndef largest_number(nums: List[int]) -> str:\n    # Convert the list of integers into a list of strings\n    nums = [str(num) for num in nums]\n\n    # Define a custom sorting function\n    def compare(a, b):\n        return int(b + a) - int(a + b)\n\n    # Sort the strings using the custom sorting function\n    nums.sort(key=compare)\n\n    # Concatenate the sorted strings to form the largest number\n    return ''.join(nums)\n\n# Test the solution with the given test case\nnums = [10, 2]\nprint(largest_number(nums))  # Output: 210",
+    "feedback": null
+}

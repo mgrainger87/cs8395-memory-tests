@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "reorganize_string",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "import heapq\nfrom collections import Counter\n\ndef reorganize_string(s: str) -> str:\n    freq = Counter(s)\n    pq = []\n    for char, count in freq.items():\n        heapq.heappush(pq, (-count, char))\n\n    result = \"\"\n    while pq:\n        count, char = heapq.heappop(pq)\n        if not result or result[-1] != char:\n            result += char\n            count += 1\n            if count < 0:\n                heapq.heappush(pq, (count, char))\n        else:\n            if not pq:\n                return \"\"\n            count2, char2 = heapq.heappop(pq)\n            result += char2\n            count2 += 1\n            if count2 < 0:\n                heapq.heappush(pq, (count2, char2))\n            heapq.heappush(pq, (count, char))\n\n    return result if len(result) == len(s) else \"\"",
+    "feedback": null
+}

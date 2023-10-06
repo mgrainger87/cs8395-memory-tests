@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "shortest_distance_character",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "from typing import List\n\ndef shortest_to_char(s: str, c: str) -> List[int]:\n    n = len(s)\n    answer = [float('inf')] * n\n    prev = float('-inf')\n    \n    # Iterate from left to right\n    for i in range(n):\n        if s[i] == c:\n            prev = i\n        answer[i] = min(answer[i], i - prev)\n    \n    next_dist = float('inf')\n    \n    # Iterate from right to left\n    for i in range(n-1, -1, -1):\n        if s[i] == c:\n            next_dist = i\n        answer[i] = min(answer[i], next_dist - i)\n    \n    return answer",
+    "feedback": null
+}

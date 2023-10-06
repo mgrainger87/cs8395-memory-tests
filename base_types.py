@@ -163,9 +163,8 @@ class GradingOutput:
 	@property
 	def overall_score(self) -> float:
 		"""Calculate and return the overall score as the average of all solution grades."""
-		# Ensure the solution_grades list is not empty to avoid division by zero
 		if not self.solution_grades:
-			raise ValueError("The solution_grades list cannot be empty.")
+			return 0
 	
 		total_score = sum(grade.score for grade in self.solution_grades)
 		average_score = total_score / len(self.solution_grades)
@@ -267,7 +266,10 @@ class FunctionPrototype:
 	def get_python_type(self, param_type, input):
 		# Based on the type, convert the string representation to the appropriate Python object
 		param_type = re.search(r'^Optional\[(.*)\]$', param_type).group(1) if re.search(r'^Optional\[(.*)\]$', param_type) else param_type
-		
+		if input is None:
+			return None
+		elif isinstance(input, str):
+			input = input[1:-1] if (input.startswith("'") and input.endswith("'")) or (input.startswith('"') and input.endswith('"')) else input
 		if param_type == "int":
 			return int(input)
 		elif param_type == "float":
@@ -304,13 +306,13 @@ class FunctionPrototype:
 		expectedOutput = test_case.expected_output
 		
 		for retval, expected in zip(self.return_values, expectedOutput):
+			converted_retval = self.get_python_type(retval.type, expected)
 			# Extract the type of the parameter
-			converted_retvals.append(self.get_python_type(retval.type, expected))
-			
+			converted_retvals.append(converted_retval)
+		
 		if len(converted_retvals) == 1:
 			return converted_retvals[0]
-		elif len(converted_retvals) > 1:
-			return tuple(converted_retvals)
+		return tuple(converted_retvals)
 
 class Parameter:
 	def __init__(self, data):
@@ -401,75 +403,90 @@ class LLMProblemInput:
 class ProblemDefinition:
 	def __init__(self,
 				 identifier: str,
-				 description: str,
-				 prompts: List[Prompt],
-				 function_prototype: FunctionPrototype,
-				 correctness_test_suite: Optional[List[TestCase]] = None,
+				 prompts: List['Prompt'],
+				 function_prototype: 'FunctionPrototype' = None,
+				 correctness_test_suite: Optional[List['TestCase']] = None,
 				 optimal_solution: Optional[str] = None,
-				 additional_instructions: Optional[str] = None,
 				 tags: Optional[List[str]] = None):
 		self.identifier = identifier
-		self.description = description
 		self.prompts = prompts
 		self.function_prototype = function_prototype
 		self.correctness_test_suite = correctness_test_suite
 		self.optimal_solution = optimal_solution
-		self.additional_instructions = additional_instructions
 		self.tags = tags
+		self.additional_fields = {}  # New attribute to store additional fields
 	
 	@classmethod
 	def from_json(cls, data: Dict[str, Any]) -> 'ProblemDefinition':
 		function_prototype = FunctionPrototype.from_json(data.get('function_prototype', {}))
 		prompts = [Prompt.from_json(prompt_data) for prompt_data in data.get("prompts", [])]
 		correctness_test_suite = [TestCase.from_json(test_case) for test_case in data.get('correctness_test_suite', [])]
-		return cls(
+		
+		# Known fields from the JSON
+		known_fields = [
+			'identifier', 'prompts', 'function_prototype',
+			'correctness_test_suite', 'optimal_solution', 'tags'
+		]
+		
+		# Populate additional fields
+		additional_fields = {k: v for k, v in data.items() if k not in known_fields}
+		
+		instance = cls(
 			identifier=data.get('identifier', ''),
-			description=data.get('description', ''),
 			prompts=prompts,
 			function_prototype=function_prototype,
 			correctness_test_suite=correctness_test_suite,
 			optimal_solution=data.get('optimal_solution', None),
-			additional_instructions=data.get('additional_instructions', None),
 			tags=data.get('tags', None)
 		)
+		instance.additional_fields = additional_fields  # Assign additional fields to the instance
+		return instance
 	
 	def to_json(self) -> Dict[str, Any]:
-		return {
+		json_data = {
 			'identifier': self.identifier,
-			'description': self.description,
 			'prompts': [prompt.to_json() for prompt in self.prompts],
 			'function_prototype': self.function_prototype.to_json(),
 			'correctness_test_suite': [test_case.to_json() for test_case in self.correctness_test_suite],
 			'optimal_solution': self.optimal_solution,
-			'additional_instructions': self.additional_instructions,
 			'tags': self.tags
 		}
+		# Merge with additional fields
+		json_data.update(self.additional_fields)
+		return json_data
 	
 	def __str__(self) -> str:
 		prompts_str = '\n    '.join(str(prompt) for prompt in self.prompts)
 		correctness_test_suite_str = '\n    '.join(str(test_case) for test_case in self.correctness_test_suite) if self.correctness_test_suite else "No Test Cases"
 		tags_str = ', '.join(self.tags) if self.tags else "No Tags"
+		
+		# Convert the additional fields dictionary to a readable string
+		additional_fields_str = '\n    '.join(f"{k}: {v}" for k, v in self.additional_fields.items())
+		
 		return (
 			f"ProblemDefinition {self.identifier}:\n"
-			f"  Description: {self.description}\n"
 			f"  Prompts:\n    {prompts_str}\n"
 			f"  Function Prototype: {self.function_prototype}\n"
 			f"  Correctness Test Suite:\n    {correctness_test_suite_str}\n"
 			f"  Optimal Solution: {self.optimal_solution or 'Not Provided'}\n"
-			f"  Additional Instructions: {self.additional_instructions or 'Not Provided'}\n"
-			f"  Tags: {tags_str}"
+			f"  Tags: {tags_str}\n"
+			f"  Additional Fields:\n    {additional_fields_str if additional_fields_str else 'No Additional Fields'}"
 		)
 	
-	def get_llm_problem_inputs(self) -> list[LLMProblemInput]:
+	def get_llm_problem_inputs(self) -> list['LLMProblemInput']:
 		llm_problem_inputs = []
 		for prompt in self.prompts:
+			function_prototype = self.function_prototype
+			if prompt.genericize:
+				function_prototype = function_prototype.genericize()
+			
 			llm_input_data = {
 				'problem_id': self.identifier,
 				'prompt_id': prompt.prompt_id,
 				'prompt':  prompt.prompt,
 				'sample_inputs_outputs': [tc.to_json() for tc in prompt.sample_inputs_outputs],
 				'input_code': prompt.input_code,
-				'function_prototype': self.function_prototype.to_json()
+				'function_prototype': function_prototype.to_json()
 			}
 			llm_problem_input = LLMProblemInput(llm_input_data)
 			llm_problem_inputs.append(llm_problem_input)

@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "smallest_letter_greater_than_target",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "def next_greatest_letter(letters, target):\n    if target >= letters[-1]:\n        return letters[0]\n    \n    left, right = 0, len(letters) - 1\n    \n    while left < right:\n        mid = (left + right) // 2\n        if letters[mid] <= target:\n            left = mid + 1\n        else:\n            right = mid\n    \n    return letters[left]",
+    "feedback": null
+}

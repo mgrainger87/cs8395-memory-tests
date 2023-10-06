@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "smallest_subsequence_distinct_chars",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "31",
+    "solution_code": "def smallest_subsequence(s: str) -> str:\n    stack = []\n    seen = set()\n    freq = {c: s.count(c) for c in s}\n    \n    for c in s:\n        if c in seen:\n            continue\n        while stack and stack[-1] > c and freq[stack[-1]] > 0:\n            seen.remove(stack.pop())\n        stack.append(c)\n        seen.add(c)\n        freq[c] -= 1\n    \n    return ''.join(stack)",
+    "feedback": null
+}

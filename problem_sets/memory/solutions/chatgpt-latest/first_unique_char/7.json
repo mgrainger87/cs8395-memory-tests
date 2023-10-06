@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "first_unique_char",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "7",
+    "solution_code": "from collections import defaultdict\nfrom typing import Optional\n\ndef first_unique_char(s: str) -> Optional[str]:\n    # Count the frequencies of each character\n    frequencies = defaultdict(int)\n    for char in s:\n        frequencies[char] += 1\n    \n    # Find the first character with a frequency of 1\n    for char in s:\n        if frequencies[char] == 1:\n            return char\n    \n    # If no such character exists, return None\n    return None",
+    "feedback": null
+}

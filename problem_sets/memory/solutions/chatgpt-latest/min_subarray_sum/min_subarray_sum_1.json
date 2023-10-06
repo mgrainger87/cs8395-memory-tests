@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "min_subarray_sum",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "min_subarray_sum_1",
+    "solution_code": "def min_sub_array_len(target, nums):\n    left = 0\n    result = float('inf')\n    subarray_sum = 0\n\n    for right in range(len(nums)):\n        subarray_sum += nums[right]\n\n        while subarray_sum >= target:\n            result = min(result, right - left + 1)\n            subarray_sum -= nums[left]\n            left += 1\n\n    return result if result != float('inf') else 0",
+    "feedback": null
+}

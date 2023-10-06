@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "valid_sudoku",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def is_valid_sudoku(board):\n    # Check rows\n    for row in board:\n        if not is_valid(row):\n            return False\n    \n    # Check columns\n    for col in zip(*board):\n        if not is_valid(col):\n            return False\n    \n    # Check sub-boxes\n    for i in range(0, 9, 3):\n        for j in range(0, 9, 3):\n            sub_box = [board[x][y] for x in range(i, i+3) for y in range(j, j+3)]\n            if not is_valid(sub_box):\n                return False\n    \n    return True\n\ndef is_valid(arr):\n    seen = set()\n    for num in arr:\n        if num != \".\" and num in seen:\n            return False\n        seen.add(num)\n    return True",
+    "feedback": null
+}

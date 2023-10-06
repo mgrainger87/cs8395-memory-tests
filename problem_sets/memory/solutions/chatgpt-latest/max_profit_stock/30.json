@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_profit_stock",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "## PLAN ##\n\nTo maximize the profit, we need to find the minimum price at which we can buy the stock and sell it on a day when the price is maximum.\n\n1. Set the minimum price to infinity and maximum profit to zero.\n2. Iterate through the given array of prices.\n    - If the current price is less than the minimum price, update the minimum price.\n    - If the difference between the current price and the minimum price is greater than the maximum profit, update the maximum profit.\n3. Return the maximum profit.\n\nThe time complexity of this approach is O(n), where n is the length of the given array.",
+    "feedback": null
+}

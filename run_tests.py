@@ -14,6 +14,6 @@ if __name__ == "__main__":
 	
 	base_path="problem_sets/memory"
 	problem_definitions = load_problems_definitions(base_path)
-	
+
 	print("Generating solutions…")
 	generate_solutions(base_path, problem_definitions, model_identifier, llm)

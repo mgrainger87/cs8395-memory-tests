@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "top_k_frequent",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "from typing import List\nfrom collections import Counter\n\ndef top_k_frequent(nums: List[int], k: int) -> List[int]:\n    # Count the frequency of each number\n    counter = Counter(nums)\n    \n    # Sort the numbers by frequency in descending order\n    sorted_nums = sorted(counter.keys(), key=lambda x: counter[x], reverse=True)\n    \n    # Return the top k most frequent numbers\n    return sorted_nums[:k]",
+    "feedback": null
+}

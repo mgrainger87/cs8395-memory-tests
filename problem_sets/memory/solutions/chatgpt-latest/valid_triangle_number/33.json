@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "valid_triangle_number",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "from typing import List\n\ndef triangle_number(nums: List[int]) -> int:\n    nums.sort()  # Sort the array in non-decreasing order\n    count = 0  # Variable to keep track of the number of valid triplets\n    \n    n = len(nums)\n    for i in range(n - 2):\n        k = i + 2  # Initialize the index k\n        \n        # Check for the triangle inequality condition\n        for j in range(i + 1, n - 1):\n            while k < n and nums[i] + nums[j] > nums[k]:\n                k += 1\n            count += k - j - 1\n    \n    return count",
+    "feedback": null
+}

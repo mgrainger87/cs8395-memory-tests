@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "rotate_image",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def rotate(matrix):\n    n = len(matrix)\n    \n    # Transpose the matrix\n    for i in range(n):\n        for j in range(i, n):\n            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]\n    \n    # Reverse each row\n    for i in range(n):\n        matrix[i] = matrix[i][::-1]\n    \n    return matrix",
+    "feedback": null
+}

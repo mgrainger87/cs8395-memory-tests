@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_sum_subarray",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "24",
+    "solution_code": "### Approach ###\n\nTo find the contiguous subarray with the largest sum, we can use the Kadane's algorithm.\n\n1. Initialize two variables, `max_sum` and `current_sum`, both set to the first element of the array.\n2. Iterate over the array starting from the second element.\n3. For each element, update `current_sum` as the maximum of the current element or the sum of current element and `current_sum`.\n4. Update `max_sum` as the maximum of `max_sum` and `current_sum`.\n5. After iterating through the entire array, `max_sum` will hold the maximum sum of any contiguous subarray.\n\n### Complexity Analysis ###\n\nSince we are iterating through the array only once, the time complexity of this approach is O(n), where n is the length of the input array.\n\nThe space complexity of this approach is O(1), as we are only using a constant amount of extra space.\n\n### Solution ###",
+    "feedback": null
+}

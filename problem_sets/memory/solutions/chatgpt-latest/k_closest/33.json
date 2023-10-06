@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "k_closest",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "To find the k closest points to the origin, we can calculate the distance of each point from the origin using the Euclidean distance formula. The Euclidean distance between two points (x1, y1) and (x2, y2) is given by:\n\ndistance = sqrt((x2 - x1)^2 + (y2 - y1)^2)\n\nWe can calculate the distance for each point in the array and store it along with the point itself in a new list. Then, we can sort the list based on the distances in ascending order. Finally, we can return the first k points from the sorted list.\n\nHere is the implementation of the above approach in Python:\n\ndef k_closest(points, k):\n    # Calculate the distance of each point from the origin\n    distances = [[point, (point[0]**2 + point[1]**2)**0.5] for point in points]\n    \n    # Sort the distances in ascending order\n    distances.sort(key=lambda x: x[1])\n    \n    # Return the first k points\n    return [point[0] for point in distances[:k]]\n\n# Test case\npoints = [[1,3],[-2,2]]\nk = 1\nprint(k_closest(points, k))",
+    "feedback": null
+}

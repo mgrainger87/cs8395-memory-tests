@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "contains_duplicate",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "22",
+    "solution_code": "def contains_duplicate(nums: List[int]) -> bool:\n    num_set = set()\n    for num in nums:\n        if num in num_set:\n            return True\n        num_set.add(num)\n    return False",
+    "feedback": null
+}

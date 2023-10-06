@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "merge_two_sorted_arrays",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def merge(nums1, m, nums2, n):\n    # Start with the last index of nums1 and nums2\n    p1 = m - 1\n    p2 = n - 1\n    # Start filling nums1 from the last index\n    p = m + n - 1\n    \n    while p1 >= 0 and p2 >= 0:\n        # Compare the values at the pointers\n        if nums1[p1] > nums2[p2]:\n            # Place the larger value at the end of nums1\n            nums1[p] = nums1[p1]\n            p1 -= 1\n        else:\n            nums1[p] = nums2[p2]\n            p2 -= 1\n        p -= 1\n    \n    # If there are remaining elements in nums2, copy them to nums1\n    nums1[:p2 + 1] = nums2[:p2 + 1]\n    \n    return nums1",
+    "feedback": null
+}

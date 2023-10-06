@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "search_rotated_sorted_array",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "56",
+    "solution_code": "def search(nums, target):\n    left = 0\n    right = len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if nums[mid] == target:\n            return mid\n        \n        # If left half is sorted\n        if nums[left] <= nums[mid]:\n            if nums[left] <= target and target < nums[mid]:\n                right = mid - 1\n            else:\n                left = mid + 1\n        # If right half is sorted\n        else:\n            if nums[mid] < target and target <= nums[right]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    \n    return -1",
+    "feedback": null
+}

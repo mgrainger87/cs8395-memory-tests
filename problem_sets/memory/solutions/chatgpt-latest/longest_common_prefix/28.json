@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_common_prefix",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def longest_common_prefix(strs):\n    # If the input list is empty, return an empty string\n    if not strs:\n        return \"\"\n    \n    # Sort the input list of strings\n    strs.sort()\n    \n    # Get the first and last string from the sorted list\n    first = strs[0]\n    last = strs[-1]\n    \n    # Find the length of the common prefix between the first and last string\n    length = min(len(first), len(last))\n    i = 0\n    while i < length and first[i] == last[i]:\n        i += 1\n    \n    # Return the common prefix\n    return first[:i]",
+    "feedback": null
+}

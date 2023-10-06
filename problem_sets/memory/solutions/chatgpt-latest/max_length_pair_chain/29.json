@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_length_pair_chain",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "from typing import List\n\ndef findLongestChain(pairs: List[List[int]]) -> int:\n    pairs.sort(key=lambda x: x[1])  # Sort pairs based on second number in each pair\n    n = len(pairs)\n    dp = [1] * n  # Initialize dp list with all values set to 1\n    \n    for i in range(n):\n        for j in range(i):\n            if pairs[j][1] < pairs[i][0]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)\n\n# Example usage:\npairs = [[1,2], [2,3], [3,4]]\nprint(findLongestChain(pairs))  # Output: 2",
+    "feedback": null
+}

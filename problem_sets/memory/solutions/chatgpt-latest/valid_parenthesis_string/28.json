@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "valid_parenthesis_string",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def checkValidString(s: str) -> bool:\n    left = right = 0\n    for char in s:\n        if char == '(':\n            left += 1\n            right += 1\n        elif char == ')':\n            left = max(left - 1, 0)\n            right -= 1\n        elif char == '*':\n            left = max(left - 1, 0)\n            right += 1\n        if right < 0:\n            return False\n    return left == 0",
+    "feedback": null
+}

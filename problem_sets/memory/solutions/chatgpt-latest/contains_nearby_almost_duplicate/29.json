@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "contains_nearby_almost_duplicate",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "29",
+    "solution_code": "def contains_nearby_almost_duplicate(nums, k, t):\n    n = len(nums)\n    window = set()\n    \n    for i in range(n):\n        if i > k:\n            window.remove(nums[i-k-1])\n        \n        for j in window:\n            if abs(nums[i] - j) <= t:\n                return True\n        \n        window.add(nums[i])\n    \n    return False",
+    "feedback": null
+}

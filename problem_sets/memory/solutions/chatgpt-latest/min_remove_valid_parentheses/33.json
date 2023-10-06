@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "min_remove_valid_parentheses",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "def min_remove_to_make_valid(s: str) -> str:\n    stack = []\n    remove_indices = set()\n    \n    for i, ch in enumerate(s):\n        if ch == '(':\n            stack.append(i)\n        elif ch == ')':\n            if not stack or s[stack[-1]] != '(':\n                remove_indices.add(i)\n            else:\n                stack.pop()\n    \n    while stack:\n        remove_indices.add(stack.pop())\n    \n    result = []\n    for i, ch in enumerate(s):\n        if i not in remove_indices:\n            result.append(ch)\n    \n    return ''.join(result)",
+    "feedback": null
+}

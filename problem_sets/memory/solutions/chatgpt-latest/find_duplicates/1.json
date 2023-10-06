@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "find_duplicates",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "1",
+    "solution_code": "from typing import List\n\ndef find_duplicates(arr: List[int]) -> List[int]:\n    # Create an empty dictionary to store the frequency of each integer\n    frequency = {}\n    \n    # Iterate through the input list and update the frequency dictionary\n    for num in arr:\n        if num in frequency:\n            frequency[num] += 1\n        else:\n            frequency[num] = 1\n    \n    # Create an empty list to store the integers that appear more than once\n    duplicates = []\n    \n    # Iterate through the frequency dictionary and add the integers with frequency > 1 to the duplicates list\n    for num, freq in frequency.items():\n        if freq > 1:\n            duplicates.append(num)\n    \n    # Sort the duplicates list in ascending order\n    duplicates.sort()\n    \n    return duplicates",
+    "feedback": null
+}

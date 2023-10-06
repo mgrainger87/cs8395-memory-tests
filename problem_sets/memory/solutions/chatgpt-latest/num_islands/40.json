@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "num_islands",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "40",
+    "solution_code": "def num_islands(grid):\n    if not grid:  # If grid is empty, return 0\n        return 0\n    \n    count = 0\n    rows = len(grid)\n    cols = len(grid[0])\n    \n    def dfs(i, j):\n        if i < 0 or i >= rows or j < 0 or j >= cols or grid[i][j] != '1':\n            return\n        \n        grid[i][j] = '0'  # Mark the current cell as visited\n        \n        # Explore adjacent cells in all four directions\n        dfs(i+1, j)\n        dfs(i-1, j)\n        dfs(i, j+1)\n        dfs(i, j-1)\n    \n    for i in range(rows):\n        for j in range(cols):\n            if grid[i][j] == '1':\n                count += 1\n                dfs(i, j)\n    \n    return count",
+    "feedback": null
+}

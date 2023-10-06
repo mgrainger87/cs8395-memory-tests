@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "partition_labels",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "33",
+    "solution_code": "def partition_labels(s: str) -> List[int]:\n    last_occurrence = {}\n    for i in range(len(s)):\n        last_occurrence[s[i]] = i\n\n    result = []\n    partition_start = 0\n    partition_end = 0\n    for i in range(len(s)):\n        partition_end = max(partition_end, last_occurrence[s[i]])\n        if i == partition_end:\n            result.append(partition_end - partition_start + 1)\n            partition_start = partition_end + 1\n\n    return result",
+    "feedback": null
+}

@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "meeting_rooms_ii",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "61",
+    "solution_code": "def min_meeting_rooms(intervals):\n    intervals.sort(key=lambda x: x[0]) # Sort intervals based on start times\n    count = 0\n    rooms = []\n    \n    for interval in intervals:\n        start, end = interval[0], interval[1]\n        \n        if not rooms:\n            rooms.append(end)\n        else:\n            min_end = min(rooms)\n            \n            if start >= min_end:\n                rooms[rooms.index(min_end)] = end\n            else:\n                count += 1\n                rooms.append(end)\n    \n    return count",
+    "feedback": null
+}

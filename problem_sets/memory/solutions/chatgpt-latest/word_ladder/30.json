@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "word_ladder",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "30",
+    "solution_code": "from collections import deque\n\ndef ladder_length(beginWord: str, endWord: str, wordList: List[str]) -> int:\n    # Convert wordList to a set for faster lookup\n    wordSet = set(wordList)\n    # If endWord is not in the wordList, it is impossible to transform beginWord to endWord\n    if endWord not in wordSet:\n        return 0\n    \n    # Initialize queue with beginWord and mark it as visited\n    queue = deque([(beginWord, 1)])\n    visited = set([beginWord])\n    \n    while queue:\n        currentWord, length = queue.popleft()\n        \n        # Check if we have reached the endWord\n        if currentWord == endWord:\n            return length\n        \n        # Explore all possible transformations of currentWord\n        for i in range(len(currentWord)):\n            for char in 'abcdefghijklmnopqrstuvwxyz':\n                newWord = currentWord[:i] + char + currentWord[i+1:]\n                \n                # If newWord is in the wordSet and has not been visited, add it to the queue and mark it as visited\n                if newWord in wordSet and newWord not in visited:\n                    queue.append((newWord, length + 1))\n                    visited.add(newWord)\n    \n    # If we cannot transform beginWord to endWord, return 0\n    return 0",
+    "feedback": null
+}

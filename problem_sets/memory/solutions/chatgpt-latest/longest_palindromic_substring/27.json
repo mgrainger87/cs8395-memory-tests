@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_palindromic_substring",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "27",
+    "solution_code": "def longest_palindromic_substring(s: str) -> str:\n    n = len(s)\n    dp = [[False] * n for _ in range(n)]\n    longest_palindrome = \"\"\n\n    # Single characters are always palindromes\n    for i in range(n):\n        dp[i][i] = True\n        longest_palindrome = s[i]\n\n    # Check for palindromes of length 2\n    for i in range(n-1):\n        if s[i] == s[i+1]:\n            dp[i][i+1] = True\n            longest_palindrome = s[i:i+2]\n\n    # Check for palindromes of length 3 and onwards\n    for length in range(3, n+1):\n        for i in range(n-length+1):\n            j = i + length - 1\n            if s[i] == s[j] and dp[i+1][j-1]:\n                dp[i][j] = True\n                longest_palindrome = s[i:j+1]\n\n    return longest_palindrome",
+    "feedback": null
+}

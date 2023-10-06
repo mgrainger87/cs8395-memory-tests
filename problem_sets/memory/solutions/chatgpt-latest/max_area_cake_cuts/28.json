@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "max_area_cake_cuts",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def max_area(h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:\n    # Sort the horizontal and vertical cuts\n    horizontalCuts.sort()\n    verticalCuts.sort()\n    \n    # Add the borders to the cuts\n    horizontalCuts = [0] + horizontalCuts + [h]\n    verticalCuts = [0] + verticalCuts + [w]\n    \n    # Initialize the maximum height and width\n    max_height = 0\n    max_width = 0\n    \n    # Calculate the maximum height and width between cuts\n    for i in range(1, len(horizontalCuts)):\n        max_height = max(max_height, horizontalCuts[i] - horizontalCuts[i-1])\n    for j in range(1, len(verticalCuts)):\n        max_width = max(max_width, verticalCuts[j] - verticalCuts[j-1])\n    \n    # Return the maximum area\n    return max_height * max_width",
+    "feedback": null
+}

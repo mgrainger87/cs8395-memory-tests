@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "word_search",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "16",
+    "solution_code": "def word_search(board, word):\n    # Helper function to check if the word can be formed starting from the given cell\n    def backtrack(row, col, word):\n        # Base case: If we have checked all the letters in the word, return True\n        if len(word) == 0:\n            return True\n        \n        # Check if the current cell is out of bounds or doesn't match the current letter of the word\n        if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]) or board[row][col] != word[0]:\n            return False\n        \n        # Mark the current cell as visited by changing its value to an empty string\n        temp = board[row][col]\n        board[row][col] = ''\n        \n        # Recursively check the adjacent cells\n        result = backtrack(row+1, col, word[1:]) or backtrack(row-1, col, word[1:]) or backtrack(row, col+1, word[1:]) or backtrack(row, col-1, word[1:])\n        \n        # Restore the value of the current cell\n        board[row][col] = temp\n        \n        return result\n    \n    # Iterate through each cell in the board and check if the word can be formed starting from that cell\n    for i in range(len(board)):\n        for j in range(len(board[0])):\n            if backtrack(i, j, word):\n                return True\n    \n    return False",
+    "feedback": null
+}

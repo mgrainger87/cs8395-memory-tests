@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "merge_intervals",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "28",
+    "solution_code": "def merge_intervals(intervals):\n    intervals.sort(key=lambda x: x[0])  # Sort intervals based on start time\n    merged = []  # Initialize an empty result list\n    for interval in intervals:\n        if not merged or interval[0] > merged[-1][1]:  # If result list is empty or current interval does not overlap with last interval in result list\n            merged.append(interval)  # Add current interval to result list\n        else:  # If current interval overlaps with last interval in result list\n            merged[-1][1] = max(merged[-1][1], interval[1])  # Update end time of last interval\n    return merged",
+    "feedback": null
+}

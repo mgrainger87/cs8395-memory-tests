@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "longest_substring_k_distinct",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "10",
+    "solution_code": "def longest_substring_k_distinct(s: str, k: int) -> str:\n    if len(s) == 0 or k == 0:\n        return \"\"\n    \n    left = 0\n    max_length = 0\n    char_count = {}\n    longest_substring = \"\"\n    \n    for right in range(len(s)):\n        # Add the current character to the char_count dictionary\n        char_count[s[right]] = char_count.get(s[right], 0) + 1\n        \n        # Shrink the sliding window until we have at most k distinct characters\n        while len(char_count) > k:\n            char_count[s[left]] -= 1\n            if char_count[s[left]] == 0:\n                del char_count[s[left]]\n            left += 1\n        \n        # Update the maximum length and longest substring if necessary\n        if right - left + 1 > max_length:\n            max_length = right - left + 1\n            longest_substring = s[left:right+1]\n    \n    return longest_substring",
+    "feedback": null
+}

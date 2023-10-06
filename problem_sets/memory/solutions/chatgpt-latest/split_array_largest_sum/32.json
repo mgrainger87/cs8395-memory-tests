@@ -1,0 +1,7 @@
+{
+    "problem_identifier": "split_array_largest_sum",
+    "model_identifier": "chatgpt-latest",
+    "prompt_identifier": "32",
+    "solution_code": "def split_array(nums, m):\n    lower_bound = max(nums)\n    upper_bound = sum(nums)\n    \n    while lower_bound < upper_bound:\n        mid = (lower_bound + upper_bound) // 2\n        count = 1\n        current_sum = 0\n        \n        for num in nums:\n            current_sum += num\n            \n            if current_sum > mid:\n                count += 1\n                current_sum = num\n                \n        if count > m:\n            lower_bound = mid + 1\n        else:\n            upper_bound = mid\n            \n    return lower_bound",
+    "feedback": null
+}
